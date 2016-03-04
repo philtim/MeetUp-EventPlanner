@@ -1,9 +1,24 @@
 {
-  "extends": "eslint:recommended",
+  "extends": ["eslint:recommended", "angular"],
+  "plugins": [
+    "angular"
+  ],
   "env": {
     "browser": true
   },
   "globals": {
-    "angular": true
+    "angular": true,
+    "module": true,
+    "inject": true
+  },
+  "rules": {
+    "angular/ng_controller_name": [
+      2,
+      "/[A-Z].*Controller$/"
+    ],
+    "quotes": [
+      2,
+      "single"
+    ]
   }
 }

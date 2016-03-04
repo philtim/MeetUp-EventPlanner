@@ -22,7 +22,7 @@ var paths = {
   src: 'src',
   tmp: '.tmp',
   sass: 'src/**/*.scss',
-  js: 'src/**/*.js',
+  js: ['src/**/*.js', '!src/**/*.spec.js'],
   html: 'src/**/*.html',
   bowerCmp: 'bower_components',
   prod: 'build/dist.prod'
@@ -44,7 +44,7 @@ function browserSyncInit(baseDir) {
 
 gulp.task('inject', ['sass'], function() {
   var injectStyles = gulp.src([paths.tmp+'/**/*.css'], {read: false});
-  var injectScripts = gulp.src([paths.js], {read: false});
+  var injectScripts = gulp.src(paths.js, {read: false});
   var injectConfig = {addRootSlash: false, ignorePath: ['src', '.tmp']};
 
   return gulp.src(paths.index)
@@ -120,7 +120,7 @@ gulp.task('watch:dev', [
   'serve'
 ], function() {
   gulp.watch(paths.sass, ['sass']);
-  gulp.watch(paths.index, ['inject']);
+  gulp.watch(paths.js, ['inject']);
 
 
   gulp.watch([
