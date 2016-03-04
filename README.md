@@ -7,17 +7,12 @@ leveraging high conversion web forms, as well as web tooling & automation.
 ## Installation
 
 ```shell
-npm install
-bower install
+npm install && bower install
 ```
 
 ## Usage
 
-### Run dev version with one of following commands
-```shell
-gulp
-```
-
+### Build development version and run server with browser-sync
 ```shell
 gulp build:dev
 ```
