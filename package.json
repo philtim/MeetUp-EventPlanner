@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/philtim/eventPlanner.git"
+    "url": "git@github.com:philtim/MeetUp-EventPlanner.git"
   },
   "bugs": {
-    "url": "https://github.com/philtim/eventPlanner/issues"
+    "url": "https://github.com/philtim/MeetUp-EventPlanner/issues"
   },
-  "homepage": "https://github.com/philtim/eventPlanner#readme",
+  "homepage": "https://github.com/philtim/MeetUp-EventPlanner#readme",
   "author": "Philipp Timmalog",
   "license": "MIT",
   "devDependencies": {
