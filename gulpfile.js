@@ -73,12 +73,10 @@ gulp.task('uglify:prod', ['inject:prod'], function() {
 
 gulp.task('sass', function() {
   return gulp.src([paths.sass])
-    .pipe(sourcemaps.init())
     .pipe(sass({}).on('error', sass.logError))
     .pipe(autoprefixer({
       browsers: ['last 2 versions']
     }))
-    .pipe(sourcemaps.write(paths.tmp+'/maps'))
     .pipe(gulp.dest(paths.tmp+'/css'));
 });
 
@@ -141,4 +139,4 @@ gulp.task('build:dev', [
   'watch:dev'
   ]);
 
-gulp.task('default', ['build-dev']);
+gulp.task('default', ['build:dev']);
