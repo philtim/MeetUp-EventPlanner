@@ -7,11 +7,15 @@ var inject = require('gulp-inject');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var clean = require('gulp-clean');
-var sourcemaps = require('gulp-sourcemaps');
 var browserSync = require('browser-sync').create();
 var useref = require('gulp-useref');
 var uglify = require('gulp-uglify');
 var ngAnnotate = require('gulp-ng-annotate');
+var ftp = require('vinyl-ftp');
+var gutil = require('gulp-util');
+var minimist = require('minimist');
+var args = minimist(process.argv.slice(2));
+
 
 var paths = {
   index: 'src/*.html',
@@ -140,3 +144,19 @@ gulp.task('build:dev', [
   ]);
 
 gulp.task('default', ['build:dev']);
+
+
+
+gulp.task('deploy', function() {
+  var remotePath = '/EventPlanner/';
+  var conn = ftp.create({
+    host: 't7lab.com',
+    user: args.user,
+    password: args.password,
+    log: gutil.log
+  });
+
+  gulp.src([paths.prod+'/**/*'])
+    .pipe(conn.newer(remotePath))
+    .pipe(conn.dest(remotePath));
+});
