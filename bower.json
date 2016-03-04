@@ -1,0 +1,25 @@
+{
+  "name": "event-planner",
+  "description": "Meet-Up Event Planner",
+  "main": "gulpfile.js",
+  "authors": [
+    "Philipp Timmalog"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.5.0",
+    "angular-ui-router": "^0.2.18"
+  },
+  "script": {
+    "postinstall": "gulp inject-vendor"
+  }
+}
