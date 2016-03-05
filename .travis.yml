@@ -5,7 +5,7 @@ branches:
   only:
   - master
 cache:
-directories:
+  directories:
   - node_modules
 env:
   global:
@@ -17,6 +17,6 @@ before_script:
 - npm install
 - bower install
 - gulp build:prod
-after_script:
+after_success:
   gulp deploy --user $FTP_USER --password $FTP_PASSWORD
 
