@@ -56,7 +56,7 @@ gulp.task('inject', ['sass'], function() {
 
 gulp.task('inject:prod', ['sass'], function() {
   var injectStyles = gulp.src([paths.prod+'/**/*.css'], {read: false});
-  var injectScripts = gulp.src([paths.js], {read: false});
+  var injectScripts = gulp.src(paths.js, {read: false});
   var injectConfig = {addRootSlash: false, ignorePath: ['src', paths.prod]};
 
   return gulp.src(paths.index)
