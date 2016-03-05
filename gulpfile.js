@@ -6,7 +6,7 @@ var wiredep = require('wiredep').stream;
 var inject = require('gulp-inject');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
-var clean = require('gulp-clean');
+var del = require('del');
 var browserSync = require('browser-sync').create();
 var useref = require('gulp-useref');
 var uglify = require('gulp-uglify');
@@ -15,6 +15,8 @@ var ftp = require('vinyl-ftp');
 var gutil = require('gulp-util');
 var minimist = require('minimist');
 var args = minimist(process.argv.slice(2));
+var htmlmin = require('gulp-html-minifier');
+var concat = require('gulp-concat');
 
 
 var paths = {
@@ -26,8 +28,8 @@ var paths = {
   html: 'src/**/*.html',
   assets: 'src/assets/**',
   assetsOther: ['src/**/*.ico'],
-  components: ['src/components/**/*', '!src/components/**/*.{scss,js}'],
-  section: ['src/section/**/*', '!src/section/**/*.{scss,js}'],
+  components: ['src/components/**/*', '!src/components/**/*.{scss,js,css}'],
+  section: ['src/section/**/*', '!src/section/**/*.{scss,js,css}'],
   bowerCmp: 'bower_components',
   prod: 'build/dist.prod'
 };
@@ -78,6 +80,18 @@ gulp.task('uglify:prod', ['inject:prod'], function() {
     .pipe(gulp.dest(paths.prod+'/scripts/'));
 });
 
+gulp.task('minifyHtml', ['clean:prod',
+  'copy:assets',
+  'copy:assetsOther',
+  'copy:components',
+  'copy:section',
+  'sass:prod',
+  'inject:prod',
+  'uglify:prod'], function() {
+  return gulp.src(paths.prod+'/**/*.html')
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest(paths.prod));
+});
 
 gulp.task('sass', function() {
   return gulp.src([paths.sass])
@@ -96,6 +110,7 @@ gulp.task('sass:prod', function() {
     .pipe(autoprefixer({
       browsers: ['last 2 versions']
     }))
+    .pipe(concat('main.css'))
     .pipe(gulp.dest(paths.prod));
 });
 
@@ -120,13 +135,15 @@ gulp.task('copy:assetsOther', function () {
 });
 
 gulp.task('clean:dev', function() {
-  return gulp.src(paths.tmp+'/**/*', {read: false})
-    .pipe(clean());
+  return del.sync([
+    paths.tmp+'/**/*'
+  ]);
 });
 
 gulp.task('clean:prod', function() {
-  return gulp.src(paths.prod+'/**/*', {read: false})
-    .pipe(clean());
+  return del.sync([
+    paths.prod+'/**/*'
+  ]);
 });
 
 
@@ -160,7 +177,8 @@ gulp.task('build:prod', [
   'copy:section',
   'sass:prod',
   'inject:prod',
-  'uglify:prod'
+  'uglify:prod',
+  'minifyHtml'
   ]);
 
 gulp.task('build:dev', [
