@@ -26,8 +26,8 @@ var paths = {
   html: 'src/**/*.html',
   assets: 'src/assets/**',
   assetsOther: ['src/**/*.ico'],
-  components: ['src/components/**/*', '!src/components/**/*.{sccs,js}'],
-  section: ['src/section/**/*', '!src/section/**/*.{sccs,js}'],
+  components: ['src/components/**/*', '!src/components/**/*.{scss,js}'],
+  section: ['src/section/**/*', '!src/section/**/*.{scss,js}'],
   bowerCmp: 'bower_components',
   prod: 'build/dist.prod'
 };
