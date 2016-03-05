@@ -24,6 +24,10 @@ var paths = {
   sass: 'src/**/*.scss',
   js: ['src/**/*.js', '!src/**/*.spec.js'],
   html: 'src/**/*.html',
+  assets: 'src/assets/**',
+  assetsOther: ['src/**/*.ico'],
+  components: ['src/components/**/*', '!src/components/**/*.{sccs,js}'],
+  section: ['src/section/**/*', '!src/section/**/*.{sccs,js}'],
   bowerCmp: 'bower_components',
   prod: 'build/dist.prod'
 };
@@ -95,16 +99,35 @@ gulp.task('sass:prod', function() {
     .pipe(gulp.dest(paths.prod));
 });
 
+gulp.task('copy:assets', function () {
+  return gulp.src(paths.assets)
+    .pipe(gulp.dest(paths.prod+'/assets/'));
+});
+
+gulp.task('copy:components', function () {
+  return gulp.src(paths.components)
+    .pipe(gulp.dest(paths.prod+'/components/'));
+});
+
+gulp.task('copy:section', function () {
+  return gulp.src(paths.section)
+    .pipe(gulp.dest(paths.prod+'/section/'));
+});
+
+gulp.task('copy:assetsOther', function () {
+  return gulp.src(paths.assetsOther)
+    .pipe(gulp.dest(paths.prod));
+});
 
 gulp.task('clean:dev', function() {
   return gulp.src(paths.tmp+'/**/*', {read: false})
     .pipe(clean());
-})
+});
 
 gulp.task('clean:prod', function() {
   return gulp.src(paths.prod+'/**/*', {read: false})
     .pipe(clean());
-})
+});
 
 
 // run browser sync in development mode
@@ -131,6 +154,10 @@ gulp.task('watch:dev', [
 
 gulp.task('build:prod', [
   'clean:prod',
+  'copy:assets',
+  'copy:assetsOther',
+  'copy:components',
+  'copy:section',
   'sass:prod',
   'inject:prod',
   'uglify:prod'
