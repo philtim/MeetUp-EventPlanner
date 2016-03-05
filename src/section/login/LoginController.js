@@ -7,8 +7,8 @@
 
 
   function LoginController() {
-    var main = this;
-    main.message = 'LoginController';
+    var vm = this;
+    vm.message = 'LoginController';
   }
 
 })();

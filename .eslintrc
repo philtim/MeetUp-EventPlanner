@@ -12,10 +12,6 @@
     "inject": true
   },
   "rules": {
-    "angular/ng_controller_name": [
-      2,
-      "/[A-Z].*Controller$/"
-    ],
     "quotes": [
       2,
       "single"

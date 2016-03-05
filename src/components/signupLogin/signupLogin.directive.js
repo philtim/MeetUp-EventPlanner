@@ -20,7 +20,6 @@
     return directive;
 
     function LoginSignupController() {
-      var vm = this;
     }
   }
 

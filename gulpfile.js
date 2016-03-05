@@ -17,6 +17,7 @@ var minimist = require('minimist');
 var args = minimist(process.argv.slice(2));
 var htmlmin = require('gulp-html-minifier');
 var concat = require('gulp-concat');
+var eslint = require('gulp-eslint');
 
 
 var paths = {
@@ -48,7 +49,7 @@ function browserSyncInit(baseDir) {
 }
 
 
-gulp.task('inject', ['sass'], function() {
+gulp.task('inject', ['lint', 'sass'], function() {
   var injectStyles = gulp.src([paths.tmp+'/**/*.css'], {read: false});
   var injectScripts = gulp.src(paths.js, {read: false});
   var injectConfig = {addRootSlash: false, ignorePath: ['src', '.tmp']};
@@ -146,6 +147,13 @@ gulp.task('clean:prod', function() {
   ]);
 });
 
+gulp.task('lint', function () {
+  return gulp.src(paths.js)
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failOnError());
+});
+
 
 // run browser sync in development mode
 gulp.task('serve', [], function () {
@@ -160,8 +168,7 @@ gulp.task('watch:dev', [
   'serve'
 ], function() {
   gulp.watch(paths.sass, ['sass']);
-  gulp.watch(paths.js, ['inject']);
-
+  gulp.watch(paths.js, ['lint', 'inject']);
 
   gulp.watch([
     paths.js,
