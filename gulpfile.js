@@ -18,6 +18,7 @@ var args = minimist(process.argv.slice(2));
 var htmlmin = require('gulp-html-minifier');
 var concat = require('gulp-concat');
 var eslint = require('gulp-eslint');
+var angularFilesort = require('gulp-angular-filesort');
 
 
 var paths = {
@@ -51,7 +52,7 @@ function browserSyncInit(baseDir) {
 
 gulp.task('inject', ['lint', 'sass'], function() {
   var injectStyles = gulp.src([paths.tmp+'/**/*.css'], {read: false});
-  var injectScripts = gulp.src(paths.js, {read: false});
+  var injectScripts = gulp.src(paths.js).pipe(angularFilesort());
   var injectConfig = {addRootSlash: false, ignorePath: ['src', '.tmp']};
 
   return gulp.src(paths.index)
@@ -63,7 +64,7 @@ gulp.task('inject', ['lint', 'sass'], function() {
 
 gulp.task('inject:prod', ['sass'], function() {
   var injectStyles = gulp.src([paths.prod+'/**/*.css'], {read: false});
-  var injectScripts = gulp.src(paths.js, {read: false});
+  var injectScripts = gulp.src(paths.js).pipe(angularFilesort());
   var injectConfig = {addRootSlash: false, ignorePath: ['src', paths.prod]};
 
   return gulp.src(paths.index)

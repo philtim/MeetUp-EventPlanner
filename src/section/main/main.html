@@ -1,1 +1,7 @@
-<h2>I'm inside {{main.message}}</h2>
+<h2>List of all events:</h2>
+
+<ul ng-repeat="(key, value) in main.events track by $index">
+  <li>{{value}}</li>
+</ul>
+
+<add-event test="main.addEvent(event)"></add-event>
