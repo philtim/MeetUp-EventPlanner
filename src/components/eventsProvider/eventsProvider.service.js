@@ -10,8 +10,17 @@
   function eventService($log) {
 
     var mockEvents = [
-      {name: 'Event 1', date: 'tomorrow', location: 'here'},
-      {name: 'Event 2', date: 'yesterday', location: 'there'}
+      { eventName: '',
+        eventType: '',
+        eventHost: '',
+        startDate: '',
+        startTime: '',
+        endDate: '',
+        endTime: '',
+        guestList: '',
+        location: '',
+        message: ''
+      }
     ];
 
     return {
@@ -24,7 +33,6 @@
     }
 
     function addEvent(event) {
-      console.log(event)
       mockEvents.push(event);
       $log.info('addEvent:', mockEvents);
     }
