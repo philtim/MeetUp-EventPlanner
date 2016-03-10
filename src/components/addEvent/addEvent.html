@@ -1,6 +1,62 @@
-<h2>Add a new event</h2>
-<input type="text" ng-model="vm.event.name">
-<input type="text" ng-model="vm.event.date">
-<input type="text" ng-model="vm.event.location">
+<div class="eventForm">
 
-<button ng-click="test(vm)">Add event</button>
+  <h2>Add a new event</h2>
+
+  <form class="eventWrapper">
+
+    <label for="event.name">
+      <span>Give your event an awesome name:</span>
+      <input id="event.name" type="text" data-ng-model="vm.event.name" required>
+    </label>
+
+    <label for="event.description">
+      <span>Give a short description what this event is about (optional):</span>
+      <textarea name="" id="event.description" cols="60" rows="5" data-ng-model="vm.event.description"></textarea>
+    </label>
+
+    <label for="event.type">
+      <span>What kind of event is it?</span>
+      <input id="event.type" list="event.typeList" data-ng-model="vm.event.type" required>
+      <datalist id="event.typeList">
+        <option value="Birthday"></option>
+        <option value="Houseparty"></option>
+      </datalist>
+    </label>
+
+    <label for="event.location">
+      <span>Where will the event happen?</span>
+      <input id="event.location" type="text" required>
+    </label>
+
+
+    <label for="event.host">
+      <span>Who's the host?</span>
+      <input id="event.host" type="text" data-ng-model="vm.event.host" required>
+    </label>
+
+    <label for="event.startDate">
+      <span>When will the event start?</span>
+      <input id="event.startDate" type="datetime-local" data-ng-model="vm.event.start" required>
+    </label>
+
+    <label for="event.endDate">
+      <span>When will the event end?</span>
+      <input id="event.endDate" type="datetime-local" data-ng-model="vm.event.end" required>
+    </label>
+
+    <label for="event.guests">
+      <span>Who should attend this event?</span>
+      <input id="event.guests" type="text" data-ng-model="vm.guest" required>
+      <button data-ng-click="vm.addGuest(vm.guest)">Add guest</button>
+    </label>
+
+
+  </form>
+
+  <ul data-ng-repeat="guest in vm.event.guests track by $index">
+    <li>{{guest}}</li>
+  </ul>
+
+  <button data-ng-disabled="!vm.isEventComplete" data-ng-click="createEvent({event: vm.event}); vm.clearForm()">Create event</button>
+
+</div>

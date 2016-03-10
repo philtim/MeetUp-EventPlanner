@@ -5,22 +5,23 @@
     .module('eventPlanner')
     .factory('eventService', eventService);
 
-  eventService.$inject = ['$log'];
+  eventService.$inject = [];
 
-  function eventService($log) {
+  function eventService() {
+
+    var mockEvent1 = {
+      name: 'Event',
+      type: 'Geburtstag',
+      host: 'Ich',
+      start: '2016-12-30T22:59:00.000Z',
+      end: '2016-12-31T22:59:00.000Z',
+      guests: ['Philipp', 'Amy-Zoe'],
+      location: 'Egenhausen',
+      message: 'Testnachricht'
+    };
 
     var mockEvents = [
-      { eventName: '',
-        eventType: '',
-        eventHost: '',
-        startDate: '',
-        startTime: '',
-        endDate: '',
-        endTime: '',
-        guestList: '',
-        location: '',
-        message: ''
-      }
+      mockEvent1
     ];
 
     return {
@@ -34,9 +35,7 @@
 
     function addEvent(event) {
       mockEvents.push(event);
-      $log.info('addEvent:', mockEvents);
     }
-
 
   }
 
