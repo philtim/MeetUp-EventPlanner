@@ -3,6 +3,22 @@
     display: block;
     margin-bottom: 20px;
 
+    .errorMessage {
+      display: none;
+    }
+
+    &.has-error {
+
+      input {
+        border: 1px solid red;
+      }
+
+      .errorMessage {
+        display: block;
+        color: red;
+      }
+    }
+
     span {
       display: block;
     }

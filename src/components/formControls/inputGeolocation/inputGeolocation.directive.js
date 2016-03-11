@@ -10,7 +10,8 @@
       restrict: 'E',
       require: 'ngModel',
       scope: {
-        location: '=ngModel'
+        location: '=ngModel',
+        name: '='
       },
       link: linkFunc,
       templateUrl: './components/formControls/inputGeolocation/inputGeolocation.directive.html',

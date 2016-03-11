@@ -2,60 +2,95 @@
 
   <h2>Add a new event</h2>
 
-  <form class="eventWrapper">
+  <form name="vm.eventForm" ng-model="vm.eventForm" class="eventWrapper" data-ng-submit="createEvent({event: vm.event}); vm.clearForm()">
 
-    <label for="event.name">
+    <!-- EVENTNAME -->
+    <label for="event.name" data-ng-class="{ 'has-error' : vm.eventForm.eventName.$invalid && !vm.eventForm.eventName.$pristine }">
       <span>Give your event an awesome name:</span>
-      <input id="event.name" type="text" placeholder="Name of event" data-ng-model="vm.event.name" required>
+      <input id="event.name" name="eventName" type="text" placeholder="Name of event" data-ng-model="vm.event.name" required>
+
+      <div class="errorMessage" role="alert">
+        <span>A name for your event is required.</span>
+      </div>
     </label>
 
+    <!-- DESCRIPTION OF EVENT -->
     <label for="event.description">
       <span>Give a short description what this event is about (optional):</span>
-      <textarea name="" id="event.description" placeholder="Short description of the event" cols="60" rows="5" data-ng-model="vm.event.description"></textarea>
+      <textarea id="event.description" placeholder="Short description of the event" cols="60" rows="5" data-ng-model="vm.event.description"></textarea>
     </label>
 
-    <label for="event.type">
+    <!-- TYPE OF EVENT -->
+    <label for="event.type" data-ng-class="{ 'has-error' : vm.eventForm.eventType.$invalid && !vm.eventForm.eventType.$pristine }">
       <span>What kind of event is it?</span>
-      <input id="event.type" list="event.typeList" placeholder="e.g. Birthday" data-ng-model="vm.event.type" required>
+      <input id="event.type" name="eventType" list="event.typeList" placeholder="e.g. Birthday" data-ng-model="vm.event.type" required>
       <datalist id="event.typeList">
         <option value="Birthday"></option>
         <option value="Houseparty"></option>
       </datalist>
+
+      <div class="errorMessage" role="alert">
+        <span>Please choose type of event.</span>
+      </div>
     </label>
 
-    <label for="location">
+    <!-- LOCATION OF EVENT -->
+    <label for="location" data-ng-class="{ 'has-error' : vm.event.location === '' && vm.eventForm.location.$pristine }">
       <span>Where will the event happen?</span>
-      <input-geolocation data-ng-model='vm.event.location' id="location"></input-geolocation>
+      <input-geolocation name="location" data-ng-model='vm.event.location' id="location" required></input-geolocation>
+
+      <div class="errorMessage" role="alert">
+        <span>A location of your event is required.</span>
+      </div>
     </label>
 
-    <label for="event.host">
+    <!-- HOST -->
+    <label for="event.host" data-ng-class="{ 'has-error' : vm.eventForm.host.$invalid && !vm.eventForm.host.$pristine }">
       <span>Who's the host?</span>
-      <input id="event.host" type="text" placeholder="Name of organizer/host/company" data-ng-model="vm.event.host" required>
+      <input id="event.host" name="host" type="text" placeholder="Name of organizer/host/company" data-ng-model="vm.event.host" required>
+
+      <div class="errorMessage" role="alert">
+        <span>A host of your event is required.</span>
+      </div>
     </label>
 
-    <label for="event.startDate">
+    <label for="event.startDate" data-ng-class="{ 'has-error' : vm.eventForm.start.$invalid && vm.eventForm.start.$touched }">
       <span>When will the event start?</span>
-      <input id="event.startDate" type="datetime-local" data-ng-model="vm.event.start" required>
+      <input id="event.startDate" name="start" type="datetime-local" data-ng-model="vm.event.start" required>
+
+      <div class="errorMessage" role="alert">
+        <span>Please define when the event will start.</span>
+      </div>
     </label>
 
-    <label for="event.endDate">
+    <label for="event.endDate" data-ng-class="{ 'has-error' : vm.eventForm.end.$invalid && vm.eventForm.end.$touched }">
       <span>When will the event end?</span>
-      <input id="event.endDate" type="datetime-local" data-ng-model="vm.event.end" required>
+      <input id="event.endDate" name="end" type="datetime-local" data-ng-model="vm.event.end" required>
+
+      <div class="errorMessage" role="alert">
+        <span>Please define when the event will end.</span>
+      </div>
     </label>
 
-    <label for="event.guests">
+    <label for="event.guests" data-ng-class="{ 'has-error' : vm.event.guests.length < 1 && vm.eventForm.guest.$touched}">
       <span>Who should attend this event?</span>
-      <input id="event.guests" type="text" placeholder="e.g. Donald Duck" data-ng-model="vm.guest" required>
+      <input id="event.guests" name="guest" type="text" placeholder="e.g. Donald Duck" data-ng-model="vm.guest">
       <button data-ng-click="vm.addGuest(vm.guest)">Add guest</button>
+
+      <div class="errorMessage" role="alert">
+        <span>Please add some guests.</span>
+      </div>
     </label>
+
+    <ul data-ng-repeat="guest in vm.event.guests track by $index">
+      <li>{{guest}} <a data-ng-click="vm.removeGuest($index)">x</a></li>
+    </ul>
+
+    <button type="submit" data-ng-disabled="vm.eventForm.$invalid">Create event</button>
 
   </form>
 
-  <ul data-ng-repeat="guest in vm.event.guests track by $index">
-    <li>{{guest}}</li>
-  </ul>
 
-  <button data-ng-disabled="!vm.isEventComplete" data-ng-click="createEvent({event: vm.event}); vm.clearForm()">Create event</button>
 
 </div>
 
