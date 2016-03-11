@@ -5,9 +5,6 @@
     .module('eventPlanner')
     .directive('inputGeolocation', inputGeolocation);
 
-  inputGeolocation.$inject = [
-  ];
-
   function inputGeolocation() {
     var directive = {
       restrict: 'E',
@@ -24,7 +21,6 @@
     return directive;
 
     function linkFunc(scope, el) {
-
       var locationInput = el.find('input')[0];
       var autocomplete;
       var options = {
@@ -52,10 +48,8 @@
 
       function getReverseGeocodingData(lat, lng) {
         var latlng = new google.maps.LatLng(lat, lng);
-        // This is making the Geocode request
         var geocoder = new google.maps.Geocoder();
         geocoder.geocode({ 'latLng': latlng }, function (results, status) {
-          // This is checking to see if the Geoeode Status is OK before proceeding
           if (status == google.maps.GeocoderStatus.OK) {
             var address = (results[0].formatted_address);
             scope.$apply(function() {
@@ -64,12 +58,9 @@
           }
         });
       }
-
     }
 
-    function InputGeolocationController() {
-
-    }
+    function InputGeolocationController() {}
   }
 
 })();
