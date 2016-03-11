@@ -6,17 +6,17 @@
 
     <label for="event.name">
       <span>Give your event an awesome name:</span>
-      <input id="event.name" type="text" data-ng-model="vm.event.name" required>
+      <input id="event.name" type="text" placeholder="Name of event" data-ng-model="vm.event.name" required>
     </label>
 
     <label for="event.description">
       <span>Give a short description what this event is about (optional):</span>
-      <textarea name="" id="event.description" cols="60" rows="5" data-ng-model="vm.event.description"></textarea>
+      <textarea name="" id="event.description" placeholder="Short description of the event" cols="60" rows="5" data-ng-model="vm.event.description"></textarea>
     </label>
 
     <label for="event.type">
       <span>What kind of event is it?</span>
-      <input id="event.type" list="event.typeList" data-ng-model="vm.event.type" required>
+      <input id="event.type" list="event.typeList" placeholder="e.g. Birthday" data-ng-model="vm.event.type" required>
       <datalist id="event.typeList">
         <option value="Birthday"></option>
         <option value="Houseparty"></option>
@@ -28,10 +28,9 @@
       <input-geolocation data-ng-model='vm.event.location' id="location"></input-geolocation>
     </label>
 
-
     <label for="event.host">
       <span>Who's the host?</span>
-      <input id="event.host" type="text" data-ng-model="vm.event.host" required>
+      <input id="event.host" type="text" placeholder="Name of organizer/host/company" data-ng-model="vm.event.host" required>
     </label>
 
     <label for="event.startDate">
@@ -46,11 +45,10 @@
 
     <label for="event.guests">
       <span>Who should attend this event?</span>
-      <input id="event.guests" type="text" data-ng-model="vm.guest" required>
+      <input id="event.guests" type="text" placeholder="e.g. Donald Duck" data-ng-model="vm.guest" required>
       <button data-ng-click="vm.addGuest(vm.guest)">Add guest</button>
     </label>
-
-
+    
   </form>
 
   <ul data-ng-repeat="guest in vm.event.guests track by $index">
