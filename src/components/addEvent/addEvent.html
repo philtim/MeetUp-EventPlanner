@@ -23,9 +23,9 @@
       </datalist>
     </label>
 
-    <label for="event.location">
+    <label for="location">
       <span>Where will the event happen?</span>
-      <input id="event.location" type="text" required>
+      <input-geolocation data-ng-model='vm.event.location' id="location"></input-geolocation>
     </label>
 
 
@@ -60,3 +60,6 @@
   <button data-ng-disabled="!vm.isEventComplete" data-ng-click="createEvent({event: vm.event}); vm.clearForm()">Create event</button>
 
 </div>
+
+
+{{vm.event}}
