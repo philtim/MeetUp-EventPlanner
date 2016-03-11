@@ -2,6 +2,6 @@
   'use strict';
 
   angular
-    .module('eventPlanner', ['ui.router', 'ngMessages']);
+    .module('eventPlanner', ['ui.router']);
 
 })();

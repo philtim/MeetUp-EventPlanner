@@ -1,6 +1,6 @@
 <div class="eventForm">
 
-  <h2>Add a new event</h2>
+  <h2>Add new event</h2>
 
   <form name="vm.eventForm" ng-model="vm.eventForm" class="eventWrapper" data-ng-submit="createEvent({event: vm.event}); vm.clearForm()">
 
@@ -54,6 +54,7 @@
       </div>
     </label>
 
+    <!-- START -->
     <label for="event.startDate" data-ng-class="{ 'has-error' : vm.eventForm.start.$invalid && vm.eventForm.start.$touched }">
       <span>When will the event start?</span>
       <input id="event.startDate" name="start" type="datetime-local" data-ng-model="vm.event.start" required>
@@ -63,6 +64,7 @@
       </div>
     </label>
 
+    <!-- END -->
     <label for="event.endDate" data-ng-class="{ 'has-error' : vm.eventForm.end.$invalid && vm.eventForm.end.$touched }">
       <span>When will the event end?</span>
       <input id="event.endDate" name="end" type="datetime-local" data-ng-model="vm.event.end" required>
@@ -72,27 +74,25 @@
       </div>
     </label>
 
+    <!-- GUEST -->
     <label for="event.guests" data-ng-class="{ 'has-error' : vm.event.guests.length < 1 && vm.eventForm.guest.$touched}">
       <span>Who should attend this event?</span>
       <input id="event.guests" name="guest" type="text" placeholder="e.g. Donald Duck" data-ng-model="vm.guest">
-      <button data-ng-click="vm.addGuest(vm.guest)">Add guest</button>
+      <button data-ng-disabled="!vm.guest" data-ng-click="vm.addGuest(vm.guest)">Add guest</button>
 
       <div class="errorMessage" role="alert">
         <span>Please add some guests.</span>
       </div>
     </label>
 
-    <ul data-ng-repeat="guest in vm.event.guests track by $index">
-      <li>{{guest}} <a data-ng-click="vm.removeGuest($index)">x</a></li>
+    <!-- LIST ALL GUESTS -->
+    <ul class="guestlist" data-ng-repeat="guest in vm.event.guests track by $index">
+      <li>{{guest}} <button type="button" data-ng-click="vm.removeGuest($index)">x</button></li>
     </ul>
 
+    <!-- SUBMIT -->
     <button type="submit" data-ng-disabled="vm.eventForm.$invalid">Create event</button>
 
   </form>
 
-
-
 </div>
-
-
-{{vm.event}}
