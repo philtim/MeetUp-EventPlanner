@@ -43,7 +43,7 @@ function browserSyncInit(baseDir) {
     server: {
       baseDir: baseDir,
       routes: {
-        "/bower_components": "bower_components"
+        '/bower_components': 'bower_components'
       }
     }
   });
@@ -151,8 +151,7 @@ gulp.task('clean:prod', function() {
 gulp.task('lint', function () {
   return gulp.src(paths.js)
     .pipe(eslint())
-    .pipe(eslint.format())
-    .pipe(eslint.failOnError());
+    .pipe(eslint.format());
 });
 
 

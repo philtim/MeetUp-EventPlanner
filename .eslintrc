@@ -4,7 +4,8 @@
     "angular"
   ],
   "env": {
-    "browser": true
+    "browser": true,
+    "node": true
   },
   "globals": {
     "angular": true,
