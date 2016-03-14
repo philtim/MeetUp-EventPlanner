@@ -23,4 +23,33 @@
       display: block;
     }
   }
+
+  .dateTime {
+    .primary {
+      display: block;
+      visibility: visible;
+    }
+
+    .alternate {
+      display: none;
+      visibility: hidden;
+    }
+  }
+
+}
+
+.noDate {
+
+  .dateTime {
+    .primary {
+      display: none;
+      visibility: hidden;
+    }
+
+    .alternate {
+      display: block;
+      visibility: visible;
+    }
+  }
+
 }

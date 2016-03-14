@@ -54,15 +54,56 @@
       </div>
     </label>
 
-    <!-- START -->
-    <label for="event.startDate" data-ng-class="{ 'has-error' : vm.eventForm.start.$invalid && vm.eventForm.start.$touched }">
-      <span>When will the event start?</span>
-      <input id="event.startDate" name="start" type="datetime-local" data-ng-model="vm.event.start" required>
 
-      <div class="errorMessage" role="alert">
-        <span>Please define when the event will start.</span>
+
+
+    <div class="dateTime">
+
+      <div class="primary">
+        <!-- END -->
+        <label for="event.startDate" data-ng-class="{ 'has-error' : vm.eventForm.start.$invalid && vm.eventForm.start.$touched }">
+          <span>When will the event start?</span>
+          <input id="event.startDate" name="end" type="datetime-local" data-ng-model="vm.event.start" required>
+
+          <div class="errorMessage" role="alert">
+            <span>Please define when the event will start.</span>
+          </div>
+        </label>
       </div>
-    </label>
+
+
+      <!-- Only visible if browser doesn't support date nor time -->
+      <div class="alternate">
+        <!-- START DATE -->
+        <!--<label for="event.startDate" data-ng-class="{ 'has-error' : vm.eventForm.start.$invalid && vm.eventForm.start.$touched }">-->
+          <!--<span>When will the event start?</span>-->
+          <!--<input id="event.startDate" name="start" type="date" data-ng-model="vm.event.start" required>-->
+          <!--<span>dd/mm/yyyy</span>-->
+
+          <!--<div class="errorMessage" role="alert">-->
+            <!--<span>Please define when the event will start.</span>-->
+          <!--</div>-->
+        <!--</label>-->
+
+        <!-- START TIME -->
+        <div class="startTime"  data-ng-class="{ 'has-error' : vm.eventForm.startTime.$invalid && !vm.eventForm.startTime.$pristine }">
+          <span>When will the event start?</span>
+
+          <label for="event.startTimeHH">
+            <input id="event.startTimeHH" name="startTimeHH" type="number" min="00" max="23" data-ng-model="vm.event.startTimeHH" required>
+          </label>
+
+          <label for="event.startTimeMM">
+            <input id="event.startTimeMM" name="startTimeMM" type="number" min="0" max="59" data-ng-model="vm.event.startTimeMM" required>
+          </label>
+
+          <div class="errorMessage" role="alert">
+            <span>Please define when the event will start.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
 
     <!-- END -->
     <label for="event.endDate" data-ng-class="{ 'has-error' : vm.eventForm.end.$invalid && vm.eventForm.end.$touched }">

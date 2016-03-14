@@ -17,9 +17,15 @@
   ],
   "dependencies": {
     "angular": "1.5.0",
-    "angular-ui-router": "^0.2.18"
+    "angular-ui-router": "^0.2.18",
+    "modernizer": "^2.8.2"
   },
   "script": {
     "postinstall": "gulp inject-vendor"
+  },
+  "overrides": {
+    "modernizer": {
+      "main": "./modernizr.js"
+    }
   }
 }
