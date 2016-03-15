@@ -5,7 +5,12 @@
     .module('eventPlanner')
     .directive('addEvent', addEvent);
 
-  function addEvent() {
+  addEvent().$inject = [
+    '$filter',
+    '$log'
+  ];
+
+  function addEvent($filter, $log) {
     var directive = {
       restrict: 'E',
       scope: {
@@ -34,6 +39,16 @@
         }
       );
 
+      var startDateWatcher = scope.$watchCollection(
+        'vm.test',
+        function (newVal, oldVal) {
+          if(newVal.split('/').length == 3) {
+            var dateArray = newVal.split('/');
+            vm.anotherTest = $filter('date')(new Date(dateArray[2],dateArray[1]-1,dateArray[0]), 'fullDate');
+          }
+        }
+      );
+
       // remove watcher once directive gets removed
       scope.$on('destroy', function () {
         guestWatcher();
@@ -45,6 +60,10 @@
       var vm = this;
       vm.event = {};
       vm.event.guests = [];
+
+      vm.test = $filter('date')(new Date(), 'fullDate');
+      vm.anotherTest = '2016-12-31T22:59:00.000Z';
+      vm.x = '';
 
       vm.addGuest = function addGuest(guest) {
         vm.event.guests.push(guest);

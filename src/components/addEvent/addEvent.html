@@ -2,12 +2,15 @@
 
   <h2>Add new event</h2>
 
-  <form name="vm.eventForm" ng-model="vm.eventForm" class="eventWrapper" data-ng-submit="createEvent({event: vm.event}); vm.clearForm()">
+  <form name="vm.eventForm" ng-model="vm.eventForm" class="eventWrapper"
+        data-ng-submit="createEvent({event: vm.event}); vm.clearForm()">
 
     <!-- EVENTNAME -->
-    <label for="event.name" data-ng-class="{ 'has-error' : vm.eventForm.eventName.$invalid && !vm.eventForm.eventName.$pristine }">
+    <label for="event.name"
+           data-ng-class="{ 'has-error' : vm.eventForm.eventName.$invalid && !vm.eventForm.eventName.$pristine }">
       <span>Give your event an awesome name:</span>
-      <input id="event.name" name="eventName" type="text" placeholder="Name of event" data-ng-model="vm.event.name" required>
+      <input id="event.name" name="eventName" type="text" placeholder="Name of event" data-ng-model="vm.event.name"
+             required>
 
       <div class="errorMessage" role="alert">
         <span>A name for your event is required.</span>
@@ -17,13 +20,16 @@
     <!-- DESCRIPTION OF EVENT -->
     <label for="event.description">
       <span>Give a short description what this event is about (optional):</span>
-      <textarea id="event.description" placeholder="Short description of the event" cols="60" rows="5" data-ng-model="vm.event.description"></textarea>
+      <textarea id="event.description" placeholder="Short description of the event" cols="60" rows="5"
+                data-ng-model="vm.event.description"></textarea>
     </label>
 
     <!-- TYPE OF EVENT -->
-    <label for="event.type" data-ng-class="{ 'has-error' : vm.eventForm.eventType.$invalid && !vm.eventForm.eventType.$pristine }">
+    <label for="event.type"
+           data-ng-class="{ 'has-error' : vm.eventForm.eventType.$invalid && !vm.eventForm.eventType.$pristine }">
       <span>What kind of event is it?</span>
-      <input id="event.type" name="eventType" list="event.typeList" placeholder="e.g. Birthday" data-ng-model="vm.event.type" required>
+      <input id="event.type" name="eventType" list="event.typeList" placeholder="e.g. Birthday"
+             data-ng-model="vm.event.type" required>
       <datalist id="event.typeList">
         <option value="Birthday"></option>
         <option value="Houseparty"></option>
@@ -45,9 +51,11 @@
     </label>
 
     <!-- HOST -->
-    <label for="event.host" data-ng-class="{ 'has-error' : vm.eventForm.host.$invalid && !vm.eventForm.host.$pristine }">
+    <label for="event.host"
+           data-ng-class="{ 'has-error' : vm.eventForm.host.$invalid && !vm.eventForm.host.$pristine }">
       <span>Who's the host?</span>
-      <input id="event.host" name="host" type="text" placeholder="Name of organizer/host/company" data-ng-model="vm.event.host" required>
+      <input id="event.host" name="host" type="text" placeholder="Name of organizer/host/company"
+             data-ng-model="vm.event.host" required>
 
       <div class="errorMessage" role="alert">
         <span>A host of your event is required.</span>
@@ -55,13 +63,12 @@
     </label>
 
 
-
-
     <div class="dateTime">
 
       <div class="primary">
         <!-- END -->
-        <label for="event.startDate" data-ng-class="{ 'has-error' : vm.eventForm.start.$invalid && vm.eventForm.start.$touched }">
+        <label for="event.startDate"
+               data-ng-class="{ 'has-error' : vm.eventForm.start.$invalid && vm.eventForm.start.$touched }">
           <span>When will the event start?</span>
           <input id="event.startDate" name="end" type="datetime-local" data-ng-model="vm.event.start" required>
 
@@ -69,54 +76,102 @@
             <span>Please define when the event will start.</span>
           </div>
         </label>
+
+        <!-- END -->
+        <label for="event.endDate" data-ng-class="{ 'has-error' : vm.eventForm.end.$invalid && vm.eventForm.end.$touched }">
+          <span>When will the event end?</span>
+          <input id="event.endDate" name="end" type="datetime-local" data-ng-model="vm.event.end" required>
+
+          <div class="errorMessage" role="alert">
+            <span>Please define when the event will end.</span>
+          </div>
+        </label>
       </div>
 
 
-      <!-- Only visible if browser doesn't support date nor time -->
+      <!-- Only visible if browser doesn't support date or time -->
       <div class="alternate">
-        <!-- START DATE -->
-        <!--<label for="event.startDate" data-ng-class="{ 'has-error' : vm.eventForm.start.$invalid && vm.eventForm.start.$touched }">-->
-          <!--<span>When will the event start?</span>-->
-          <!--<input id="event.startDate" name="start" type="date" data-ng-model="vm.event.start" required>-->
-          <!--<span>dd/mm/yyyy</span>-->
+        <!--START DATE-->
+        <div class="startDate"
+             data-ng-class="{'has-error' : vm.eventForm.startDateAlt.$invalid && vm.eventForm.startDateAlt.$touched }">
 
-          <!--<div class="errorMessage" role="alert">-->
-            <!--<span>Please define when the event will start.</span>-->
-          <!--</div>-->
-        <!--</label>-->
-
-        <!-- START TIME -->
-        <div class="startTime"  data-ng-class="{ 'has-error' : vm.eventForm.startTime.$invalid && !vm.eventForm.startTime.$pristine }">
-          <span>When will the event start?</span>
-
-          <label for="event.startTimeHH">
-            <input id="event.startTimeHH" name="startTimeHH" type="number" min="00" max="23" data-ng-model="vm.event.startTimeHH" required>
-          </label>
-
-          <label for="event.startTimeMM">
-            <input id="event.startTimeMM" name="startTimeMM" type="number" min="0" max="59" data-ng-model="vm.event.startTimeMM" required>
+          <label for="event.alt.startDate">
+            <span>When will the event start?</span>
+            <input id="event.alt.startDate"
+                   name="startDateAlt"
+                   type="text"
+                   pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d"
+                   placeholder="mm/dd/yyyy"
+                   data-ng-model="vm.event.alt.startDate" required>
           </label>
 
           <div class="errorMessage" role="alert">
-            <span>Please define when the event will start.</span>
+            <span>Check the formatting of the date: mm/dd/yyyy, e.g. 12/24/2016</span>
           </div>
         </div>
-      </div>
 
+        <!-- START TIME -->
+        <div class="startTime"
+             data-ng-class="{'has-error' : vm.eventForm.startTimeAlt.$invalid && vm.eventForm.startTimeAlt.$touched }">
+          <label for="event.alt.startTime">
+            <input id="event.alt.startTime"
+                   name="startTimeHH"
+                   type="text"
+                   placeholder="e.g. 01:11 am"
+                   pattern="(0[0-9]|1[0-2])(:[0-5][0-9])( |)(AM|PM|am|pm)"
+                   data-ng-model="vm.event.alt.startTime" required>
+          </label>
+
+          <div class="errorMessage" role="alert">
+            <span>Formatting of time must match HH:mm, e.g. 11:20 am</span>
+            <span>Hour must be between 0 and 12</span>
+          </div>
+        </div>
+
+        <!--END DATE-->
+        <div class="endDate"
+             data-ng-class="{'has-error' : vm.eventForm.endDateAlt.$invalid && vm.eventForm.endDateAlt.$touched }">
+
+          <label for="event.alt.endDate">
+            <span>When will the event start?</span>
+            <input id="event.alt.endDate"
+                   name="endDateAlt"
+                   type="text"
+                   pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d"
+                   placeholder="mm/dd/yyyy"
+                   data-ng-model="vm.event.alt.endDate" required>
+          </label>
+
+          <div class="errorMessage" role="alert">
+            <span>Check the formatting of the date: mm/dd/yyyy, e.g. 12/24/2016</span>
+          </div>
+        </div>
+
+        <!-- END TIME -->
+        <div class="endTime"
+             data-ng-class="{'has-error' : vm.eventForm.endTimeAlt.$invalid && vm.eventForm.endTimeAlt.$touched }">
+          <label for="event.alt.endTime">
+            <input id="event.alt.endTime"
+                   name="endTimeAlt"
+                   type="text"
+                   placeholder="e.g. 01:11 am"
+                   pattern="(0[0-9]|1[0-2])(:[0-5][0-9])( |)(AM|PM|am|pm)"
+                   data-ng-model="vm.event.alt.endTime" required>
+          </label>
+
+          <div class="errorMessage" role="alert">
+            <span>Formatting of time must match HH:mm, e.g. 11:20 am</span>
+            <span>Hour must be between 0 and 12</span>
+          </div>
+        </div>
+
+      </div>
     </div>
 
-    <!-- END -->
-    <label for="event.endDate" data-ng-class="{ 'has-error' : vm.eventForm.end.$invalid && vm.eventForm.end.$touched }">
-      <span>When will the event end?</span>
-      <input id="event.endDate" name="end" type="datetime-local" data-ng-model="vm.event.end" required>
-
-      <div class="errorMessage" role="alert">
-        <span>Please define when the event will end.</span>
-      </div>
-    </label>
 
     <!-- GUEST -->
-    <label for="event.guests" data-ng-class="{ 'has-error' : vm.event.guests.length < 1 && vm.eventForm.guest.$touched}">
+    <label for="event.guests"
+           data-ng-class="{ 'has-error' : vm.event.guests.length < 1 && vm.eventForm.guest.$touched}">
       <span>Who should attend this event?</span>
       <input id="event.guests" name="guest" type="text" placeholder="e.g. Donald Duck" data-ng-model="vm.guest">
       <button data-ng-disabled="!vm.guest" data-ng-click="vm.addGuest(vm.guest)">Add guest</button>
@@ -128,7 +183,9 @@
 
     <!-- LIST ALL GUESTS -->
     <ul class="guestlist" data-ng-repeat="guest in vm.event.guests track by $index">
-      <li>{{guest}} <button type="button" data-ng-click="vm.removeGuest($index)">x</button></li>
+      <li>{{guest}}
+        <button type="button" data-ng-click="vm.removeGuest($index)">x</button>
+      </li>
     </ul>
 
     <!-- SUBMIT -->
@@ -137,3 +194,7 @@
   </form>
 
 </div>
+<input type="text" ng-model="vm.test">
+{{"2016-03-14T21:22:00.000Z" | date:'short'}}
+{{vm.event}}
+<h3>{{vm.x | date: 'short'}}</h3>

@@ -3,24 +3,28 @@
     display: block;
     margin-bottom: 20px;
 
-    .errorMessage {
-      display: none;
+    span {
+      display: block;
     }
+  }
 
-    &.has-error {
-
-      input {
-        border: 1px solid red;
-      }
-
-      .errorMessage {
-        display: block;
-        color: red;
-      }
-    }
+  .errorMessage {
+    display: none;
 
     span {
       display: block;
+    }
+  }
+
+  .has-error {
+
+    input {
+      border: 1px solid red;
+    }
+
+    .errorMessage {
+      display: block;
+      color: red;
     }
   }
 
