@@ -136,7 +136,6 @@
           var startDate = new Date(valueStart);
           var endDate = new Date(valueEnd);
 
-          $log.debug(startDate, endDate);
           if(startDate > endDate) {
             form.$setValidity('eventEndInPast', false);
           } else {
