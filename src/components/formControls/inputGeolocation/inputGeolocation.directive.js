@@ -30,15 +30,15 @@
       };
 
       autocomplete = new google.maps.places.Autocomplete(locationInput, options);
-      autocomplete.addListener('place_changed', function() {
-        scope.$apply(function() {
+      autocomplete.addListener('place_changed', function () {
+        scope.$apply(function () {
           scope.location = locationInput.value;
         });
       });
 
       // Try HTML5 geolocation.
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
+        navigator.geolocation.getCurrentPosition(function (position) {
           var pos = {
             lat: position.coords.latitude,
             lng: position.coords.longitude
@@ -50,10 +50,10 @@
       function getReverseGeocodingData(lat, lng) {
         var latlng = new google.maps.LatLng(lat, lng);
         var geocoder = new google.maps.Geocoder();
-        geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+        geocoder.geocode({'latLng': latlng}, function (results, status) {
           if (status == google.maps.GeocoderStatus.OK) {
             var address = (results[0].formatted_address);
-            scope.$apply(function() {
+            scope.$apply(function () {
               scope.location = address;
             });
           }
@@ -61,7 +61,8 @@
       }
     }
 
-    function InputGeolocationController() {}
+    function InputGeolocationController() {
+    }
   }
 
 })();

@@ -8,26 +8,6 @@
     }
   }
 
-  .errorMessage {
-    display: none;
-
-    span {
-      display: block;
-    }
-  }
-
-  .has-error {
-
-    input {
-      border: 1px solid red;
-    }
-
-    .errorMessage {
-      display: block;
-      color: red;
-    }
-  }
-
   .dateTime {
     .primary {
       display: block;

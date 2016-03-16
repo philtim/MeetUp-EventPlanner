@@ -1,7 +1,99 @@
-<div class="signup">
+<div class="signupForm">
   <h3>Register</h3>
-  <input type="text" ng-model="vm.user.name">
-  <input type="text" ng-model="vm.user.password">
 
-  <button data-ng-click="vm.register(vm.user)">Register new user</button>
+  <form name="vm.signupForm"
+        ng-model="vm.signupForm"
+        data-ng-submit="vm.register(vm.newUser)"
+        novalidate>
+
+    <!-- NAME -->
+    <div class="formInput"
+         data-ng-class="{ 'has-error' : vm.signupForm.name.$invalid && !vm.signupForm.name.$pristine }">
+      <label for="newUser.name">
+        <span>Name of new user:</span>
+        <input id="newUser.name"
+               type="text"
+               name="name"
+               placeholder="e.g. John Awesome"
+               ng-model="vm.newUser.name"
+               autocomplete="name"
+               required>
+      </label>
+
+      <div class="errorMessage"
+           role="alert">
+        <span>Name is required.</span>
+      </div>
+    </div>
+
+    <!-- E-MAIL ADDRESS -->
+    <div class="formInput"
+         data-ng-class="{ 'has-error' : vm.signupForm.email.$invalid && !vm.signupForm.email.$pristine }">
+      <label for="newUser.email">
+        <span>E-Mail address, which will be your username as well:</span>
+        <input id="newUser.email"
+               type="email"
+               name="email"
+               ng-model="vm.newUser.email"
+               placeholder="e.g. john@awesomeness.com"
+               autocomplete="email"
+               required>
+      </label>
+
+      <div class="errorMessage"
+           role="alert">
+        <span data-ng-if="vm.signupForm.email.$error.required">E-mail is required.</span>
+        <span>Format of e-mail address is not valid.</span>
+      </div>
+    </div>
+
+    <!-- PASSWORD -->
+    <div class="formInput"
+         data-ng-class="{ 'has-error' : vm.signupForm.password.$invalid && !vm.signupForm.password.$pristine }">
+      <label for="newUser.password">
+        <span>Password of new user:</span>
+        <input id="newUser.password"
+               type="password"
+               name="password"
+               data-ng-model="vm.newUser.password"
+               data-ng-minlength="8"
+               placeholder="8 characters | One upper & one lowercase | one number or symbol"
+               data-ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/"
+               required>
+      </label>
+
+      <div class="errorMessage"
+           role="alert">
+        <span data-ng-if="vm.signupForm.password.$error.required">Password is required</span>
+        <span data-ng-if="vm.signupForm.password.$error.minlength">Must be at least eight characters long</span>
+        <span data-ng-if="vm.signupForm.password.$error.pattern">Must contain one lower and one uppercase character</span>
+        <span data-ng-if="vm.signupForm.password.$error.pattern">Must contain at least one symbol or number</span>
+      </div>
+    </div>
+
+    <!-- PHONE NUMBER -->
+    <div class="formInput"
+         data-ng-class="{ 'has-error' : vm.signupForm.tel.$invalid && !vm.signupForm.tel.$pristine }">
+      <label for="newUser.tel">
+        <span>Mobile number (optional):</span>
+        <input id="newUser.tel"
+               type="tel"
+               name="tel"
+               placeholder="e.g. 12345678"
+               autocomplete="tel"
+               data-ng-model="vm.newUser.tel"
+               data-ng-pattern="/[0-9]$/">
+      </label>
+
+      <div class="errorMessage"
+           role="alert">
+        <span>Only numbers are allowed, no hyphens or other characters.</span>
+      </div>
+    </div>
+
+  </form>
+
+  <button type="submit"
+          data-ng-disabled="vm.signupForm.$invalid">Register new user
+  </button>
 </div>

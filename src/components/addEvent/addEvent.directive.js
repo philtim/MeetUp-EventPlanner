@@ -45,7 +45,7 @@
       var guestWatcher = scope.$watchCollection(
         'vm.event.guests',
         function () {
-          if(vm.event.guests.length == 0) {
+          if (vm.event.guests.length == 0) {
             vm.eventForm.guest.$setValidity('guests', false);
           } else {
             vm.eventForm.guest.$setValidity('guests', true);
@@ -54,19 +54,19 @@
       );
 
       // alternate date creation
-      var dateWatcher =  scope.$watchCollection(
+      var dateWatcher = scope.$watchCollection(
         'vm.event.altDate',
         function (newValue, oldValue) {
-          if(angular.isUndefined(newValue) || newValue === oldValue) return;
+          if (angular.isUndefined(newValue) || newValue === oldValue) return;
 
-          if(newValue.hasOwnProperty('startDate') && newValue.hasOwnProperty('startTime')) {
-            if(angular.isDefined(newValue.startDate) || angular.isDefined(newValue.startTime)) {
+          if (newValue.hasOwnProperty('startDate') && newValue.hasOwnProperty('startTime')) {
+            if (angular.isDefined(newValue.startDate) || angular.isDefined(newValue.startTime)) {
               vm.event.startDate = createDateObject(newValue.startDate, newValue.startTime);
             }
           }
 
-          if(newValue.hasOwnProperty('endDate') && newValue.hasOwnProperty('endTime')) {
-            if(angular.isDefined(newValue.endDate) || angular.isDefined(newValue.endTime)) {
+          if (newValue.hasOwnProperty('endDate') && newValue.hasOwnProperty('endTime')) {
+            if (angular.isDefined(newValue.endDate) || angular.isDefined(newValue.endTime)) {
               vm.event.endDate = createDateObject(newValue.endDate, newValue.endTime);
             }
           }
@@ -87,8 +87,8 @@
       var startDate = {};
 
       try {
-        startDate = new Date(date[2], date[1]-1, date[0], time[1], time[0]);
-      } catch(err) {
+        startDate = new Date(date[2], date[1] - 1, date[0], time[1], time[0]);
+      } catch (err) {
         $log.error('Creation of date threw error:', err);
       }
 
@@ -122,7 +122,7 @@
         var date = new Date(value);
         var today = new Date();
 
-        if(today > date) {
+        if (today > date) {
           form.$setValidity('eventInPast', false);
         } else {
           form.$setValidity('eventInPast', true);
@@ -132,18 +132,17 @@
       vm.checkDateAndCompare = function checkDateAndCompare(form, valueEnd, valueStart) {
         vm.checkDate(form, valueEnd);
 
-        if(valueStart) {
+        if (valueStart) {
           var startDate = new Date(valueStart);
           var endDate = new Date(valueEnd);
 
-          if(startDate > endDate) {
+          if (startDate > endDate) {
             form.$setValidity('eventEndInPast', false);
           } else {
             form.$setValidity('eventEndInPast', true);
           }
         }
       }
-
 
 
     }

@@ -14,17 +14,16 @@
     var directive = {
       restrict: 'E',
       scope: {
-        userName: '=',
-        userPassword: '='
+        signupForm: '@'
       },
       templateUrl: './components/signup/signup.html',
-      controller: LoginController,
+      controller: SignupController,
       controllerAs: 'vm'
     };
 
     return directive;
 
-    function LoginController() {
+    function SignupController() {
       var vm = this;
 
       vm.register = function register() {
