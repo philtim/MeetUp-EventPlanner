@@ -8,31 +8,51 @@
   userService.$inject = [
     '$rootScope',
     '$log',
-    'AUTH_EVENTS'
+    'AUTH_EVENTS',
+    'localStorageService'
   ];
 
-  var fakeUser = {};
-  fakeUser.isAuthenticated = false;
-
-  function userService($rootScope, $log, AUTH_EVENTS) {
+  function userService($rootScope, $log, AUTH_EVENTS, localStorageService) {
 
     return {
       authenticate: authenticate,
-      isAuthenticated: isAuthenticated
+      invalidateUser: invalidateUser,
+      isAuthenticated: isAuthenticated,
+      registerUser: registerUser
     };
 
     function authenticate(user) {
-      fakeUser.isAuthenticated = true;
+      user.authenticated = true;
       $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
     }
 
     function invalidateUser(user) {
-      fakeUser.isAuthenticated = false;
+      user.authenticated = false;
       $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
     }
 
     function isAuthenticated(user) {
-      return fakeUser.isAuthenticated;
+      return user.authenticated;
+    }
+
+    function registerUser(user) {
+      // retrieve userlist from localStorage
+      var userList = localStorageService.get('userlist');
+
+      // Check that we have a valid array. If not, create a new one.
+      if(userList !== null) {
+        // Check if entry already exists and overwrite it rather than creating a new one
+        var existingUserIndex = _.indexOf(userList, _.find(userList, {id: user.email}));
+        if(existingUserIndex !== -1) {
+          userList[existingUserIndex] = {id: user.email, userObject: user};
+        } else {
+          userList.push({id: user.email, userObject: user});
+        }
+      } else {
+        userList = [{id: user.email, userObject: user}];
+      }
+
+      localStorageService.set('userlist', userList);
     }
 
   }

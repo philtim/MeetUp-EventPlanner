@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   angular
@@ -11,8 +11,11 @@
       notAuthenticated: 'auth-not-authenticated',
       notAuthorized: 'auth-not-authorized'
     })
-    .config(function($logProvider) {
+    .config(function ($logProvider) {
       $logProvider.debugEnabled(true);
-    });
+    })
+    .config(['localStorageServiceProvider', function (localStorageServiceProvider) {
+      localStorageServiceProvider.setPrefix('ls');
+    }]);
 
 })();

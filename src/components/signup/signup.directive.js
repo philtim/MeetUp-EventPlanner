@@ -26,8 +26,8 @@
     function SignupController() {
       var vm = this;
 
-      vm.register = function register() {
-
+      vm.registerUser = function register(user) {
+        userService.registerUser(user);
       }
     }
   }

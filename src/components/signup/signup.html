@@ -3,7 +3,7 @@
 
   <form name="vm.signupForm"
         ng-model="vm.signupForm"
-        data-ng-submit="vm.register(vm.newUser)"
+        data-ng-submit="vm.registerUser(vm.newUser)"
         novalidate>
 
     <!-- NAME -->
@@ -91,9 +91,10 @@
       </div>
     </div>
 
+    <button type="submit"
+            data-ng-disabled="vm.signupForm.$invalid">Register new user
+    </button>
+
   </form>
 
-  <button type="submit"
-          data-ng-disabled="vm.signupForm.$invalid">Register new user
-  </button>
 </div>

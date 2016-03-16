@@ -2,6 +2,6 @@
   'use strict';
 
   angular
-    .module('eventPlanner', ['ui.router']);
+    .module('eventPlanner', ['ui.router', 'LocalStorageModule']);
 
 })();
