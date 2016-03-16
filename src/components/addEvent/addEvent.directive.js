@@ -27,10 +27,10 @@
 
     function linkFunc(scope, el, attrs, vm) {
 
-      // use watchCollection to check if guest form should be valid/invalid
+      // check if guest form should be valid/invalid
       var guestWatcher = scope.$watchCollection(
         'vm.event.guests',
-        function (newVal, oldVal) {
+        function () {
           if(vm.event.guests.length == 0) {
             vm.eventForm.guest.$setValidity('guests', false);
           } else {
@@ -39,12 +39,22 @@
         }
       );
 
-      var startDateWatcher = scope.$watchCollection(
-        'vm.test',
-        function (newVal, oldVal) {
-          if(newVal.split('/').length == 3) {
-            var dateArray = newVal.split('/');
-            vm.anotherTest = $filter('date')(new Date(dateArray[2],dateArray[1]-1,dateArray[0]), 'fullDate');
+      // alternate date creation
+      var dateWatcher =  scope.$watchCollection(
+        'vm.event.altDate',
+        function (newValue, oldValue) {
+          if(angular.isUndefined(newValue) || newValue === oldValue) return;
+
+          if(newValue.hasOwnProperty('startDate') && newValue.hasOwnProperty('startTime')) {
+            if(angular.isDefined(newValue.startDate) || angular.isDefined(newValue.startTime)) {
+              vm.event.startDate = createDateObject(newValue.startDate, newValue.startTime);
+            }
+          }
+
+          if(newValue.hasOwnProperty('endDate') && newValue.hasOwnProperty('endTime')) {
+            if(angular.isDefined(newValue.endDate) || angular.isDefined(newValue.endTime)) {
+              vm.event.endDate = createDateObject(newValue.endDate, newValue.endTime);
+            }
           }
         }
       );
@@ -52,8 +62,23 @@
       // remove watcher once directive gets removed
       scope.$on('destroy', function () {
         guestWatcher();
+        dateWatcher();
       })
 
+    }
+
+    function createDateObject(date, time) {
+      time = time.split(':');
+      date = date.split('/');
+      var startDate = {};
+
+      try {
+        startDate = new Date(date[2], date[1]-1, date[0], time[1], time[0]);
+      } catch(err) {
+        $log.error('Creation of date threw error:', err);
+      }
+
+      return startDate;
     }
 
     function AddEventController() {
@@ -61,9 +86,7 @@
       vm.event = {};
       vm.event.guests = [];
 
-      vm.test = $filter('date')(new Date(), 'fullDate');
-      vm.anotherTest = '2016-12-31T22:59:00.000Z';
-      vm.x = '';
+      vm.today = $filter('date')(new Date(), 'mm/dd/yyyy');
 
       vm.addGuest = function addGuest(guest) {
         vm.event.guests.push(guest);

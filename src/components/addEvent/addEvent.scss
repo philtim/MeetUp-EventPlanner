@@ -53,6 +53,15 @@
     .alternate {
       display: block;
       visibility: visible;
+
+      // Hide the message of time on screen, but make it still accessible for screen readers
+      .startTime,
+      .endTime {
+        label > span {
+          position: absolute;
+          left: -99999px;
+        }
+      }
     }
   }
 

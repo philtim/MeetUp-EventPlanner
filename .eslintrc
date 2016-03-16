@@ -11,7 +11,8 @@
     "angular": true,
     "module": true,
     "inject": true,
-    "google": true
+    "google": true,
+    "Modernizr": true
   },
   "rules": {
     "quotes": [
