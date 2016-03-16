@@ -169,6 +169,7 @@ gulp.task('watch:dev', [
 ], function() {
   gulp.watch(paths.sass, ['sass']);
   gulp.watch(paths.js, ['lint', 'inject']);
+  gulp.watch(paths.index, ['inject']);
 
   gulp.watch([
     paths.js,

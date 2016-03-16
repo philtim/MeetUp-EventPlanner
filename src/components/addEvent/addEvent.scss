@@ -3,24 +3,66 @@
     display: block;
     margin-bottom: 20px;
 
-    .errorMessage {
-      display: none;
+    span {
+      display: block;
     }
+  }
 
-    &.has-error {
-
-      input {
-        border: 1px solid red;
-      }
-
-      .errorMessage {
-        display: block;
-        color: red;
-      }
-    }
+  .errorMessage {
+    display: none;
 
     span {
       display: block;
     }
   }
+
+  .has-error {
+
+    input {
+      border: 1px solid red;
+    }
+
+    .errorMessage {
+      display: block;
+      color: red;
+    }
+  }
+
+  .dateTime {
+    .primary {
+      display: block;
+      visibility: visible;
+    }
+
+    .alternate {
+      display: none;
+      visibility: hidden;
+    }
+  }
+
+}
+
+.noDate {
+
+  .dateTime {
+    .primary {
+      display: none;
+      visibility: hidden;
+    }
+
+    .alternate {
+      display: block;
+      visibility: visible;
+
+      // Hide the message of time on screen, but make it still accessible for screen readers
+      .startTime,
+      .endTime {
+        label > span {
+          position: absolute;
+          left: -99999px;
+        }
+      }
+    }
+  }
+
 }
