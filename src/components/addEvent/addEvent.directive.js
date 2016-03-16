@@ -118,6 +118,35 @@
         vm.event.guests = [];
       };
 
+      vm.checkDate = function checkDate(form, value) {
+        var date = new Date(value);
+        var today = new Date();
+
+        if(today > date) {
+          form.$setValidity('eventInPast', false);
+        } else {
+          form.$setValidity('eventInPast', true);
+        }
+      };
+
+      vm.checkDateAndCompare = function checkDateAndCompare(form, valueEnd, valueStart) {
+        vm.checkDate(form, valueEnd);
+
+        if(valueStart) {
+          var startDate = new Date(valueStart);
+          var endDate = new Date(valueEnd);
+
+          $log.debug(startDate, endDate);
+          if(startDate > endDate) {
+            form.$setValidity('eventEndInPast', false);
+          } else {
+            form.$setValidity('eventEndInPast', true);
+          }
+        }
+      }
+
+
+
     }
 
   }
