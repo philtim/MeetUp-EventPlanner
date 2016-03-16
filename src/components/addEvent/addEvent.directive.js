@@ -27,6 +27,20 @@
 
     function linkFunc(scope, el, attrs, vm) {
 
+      if (!Modernizr.inputtypes.date) {
+        vm.hasDate = false;
+        el.addClass('noDate');
+      } else {
+        vm.hasDate = true;
+      }
+
+      if (!Modernizr.inputtypes.time) {
+        vm.hasTime = false;
+        el.addClass('noTime');
+      } else {
+        vm.hasTime = true;
+      }
+
       // check if guest form should be valid/invalid
       var guestWatcher = scope.$watchCollection(
         'vm.event.guests',
@@ -85,7 +99,6 @@
       var vm = this;
       vm.event = {};
       vm.event.guests = [];
-
       vm.today = $filter('date')(new Date(), 'mm/dd/yyyy');
 
       vm.addGuest = function addGuest(guest) {
@@ -93,7 +106,8 @@
         vm.guest = '';
       };
 
-      vm.removeGuest = function removeGuest(index) {
+      vm.removeGuest = function removeGuest(event, index) {
+        event.preventDefault();
         vm.event.guests.splice(index, 1);
       };
 
