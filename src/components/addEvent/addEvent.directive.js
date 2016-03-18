@@ -87,6 +87,7 @@
       var startDate = {};
 
       try {
+        // TODO: Refactor date handling
         startDate = new Date(date[2], date[1] - 1, date[0], time[1], time[0]);
       } catch (err) {
         $log.error('Creation of date threw error:', err);
@@ -144,9 +145,7 @@
         }
       }
 
-
     }
-
   }
 
 })();

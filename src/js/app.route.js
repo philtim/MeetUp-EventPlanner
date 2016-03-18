@@ -5,14 +5,13 @@
     .module('eventPlanner')
     .config(routerConfig);
 
-  function routerConfig($stateProvider, $urlRouterProvider) {
+  function routerConfig($stateProvider) {
     $stateProvider
       .state('home', {
         url: '/',
         templateUrl: 'section/main/main.html',
         controller: 'MainController',
-        controllerAs: 'main',
-        resolve: {authenticate: authenticate}
+        controllerAs: 'main'
       })
 
       .state('login', {
@@ -22,18 +21,6 @@
         controllerAs: 'main'
       });
 
-    $urlRouterProvider.otherwise('/login');
-
-    function authenticate($q, $state, $timeout, userService) {
-      if (userService.isAuthenticated()) {
-        return $q.when();
-      } else {
-        $timeout(function () {
-          $state.go('login')
-        });
-        return $q.reject()
-      }
-    }
   }
 
 })();

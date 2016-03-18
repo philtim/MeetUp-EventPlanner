@@ -19,7 +19,7 @@
     "angular": "1.5.0",
     "angular-ui-router": "^0.2.18",
     "modernizer": "^2.8.2",
-    "angular-local-storage": "^0.2.7"
+    "ngstorage": "^0.3.10"
   },
   "script": {
     "postinstall": "gulp inject-vendor"

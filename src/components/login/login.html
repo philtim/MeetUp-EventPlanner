@@ -1,9 +1,40 @@
 <div class="login">
   <h3>Login</h3>
-  <input type="text"
-         ng-model="vm.user.name">
-  <input type="text"
-         ng-model="vm.user.password">
 
-  <button data-ng-click="vm.authenticate(vm.user)">Login</button>
+  <form name="vm.loginForm"
+        data-ng-model="vm.loginForm"
+        data-ng-submit="vm.authenticate(vm.user)">
+
+    <div class="formInput"
+         data-ng-class="{ 'has-error' : vm.loginForm.username.$error.loginFailure}">
+
+      <label for="user.name">
+        <span>Username:</span>
+        <input type="text"
+               name="username"
+               id="user.name"
+               ng-model="vm.user.name"
+               autocomplete="email"
+               required >
+      </label>
+
+      <label for="user.password">
+        <span>Password:</span>
+        <input type="text"
+               name="password"
+               id="user.password"
+               ng-model="vm.user.password"
+               required >
+      </label>
+
+      <div class="errorMessage">
+        <span>Username and/or password are wrong.</span>
+      </div>
+
+    </div>
+
+    <button
+      type="submit"
+      data-ng-disabled="vm.loginForm.$invalid">Login</button>
+  </form>
 </div>

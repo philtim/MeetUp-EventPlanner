@@ -13,9 +13,6 @@
     })
     .config(function ($logProvider) {
       $logProvider.debugEnabled(true);
-    })
-    .config(['localStorageServiceProvider', function (localStorageServiceProvider) {
-      localStorageServiceProvider.setPrefix('ls');
-    }]);
+    });
 
 })();

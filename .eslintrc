@@ -12,7 +12,8 @@
     "module": true,
     "inject": true,
     "google": true,
-    "Modernizr": true
+    "Modernizr": true,
+    "_": true
   },
   "rules": {
     "quotes": [

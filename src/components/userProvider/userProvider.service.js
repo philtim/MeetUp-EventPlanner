@@ -7,12 +7,12 @@
 
   userService.$inject = [
     '$rootScope',
-    '$log',
-    'AUTH_EVENTS',
-    'localStorageService'
+    '$localStorage',
+    '$sessionStorage',
+    'AUTH_EVENTS'
   ];
 
-  function userService($rootScope, $log, AUTH_EVENTS, localStorageService) {
+  function userService($rootScope, $localStorage, $sessionStorage, AUTH_EVENTS) {
 
     return {
       authenticate: authenticate,
@@ -22,26 +22,54 @@
     };
 
     function authenticate(user) {
-      user.authenticated = true;
-      $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+      var localStorage = $localStorage;
+      var sessionStorage = $sessionStorage;
+
+      var userList = localStorage.userList;
+      var existingUserIndex = _.indexOf(userList, _.find(userList, {id: user.name}));
+      var realUser = {};
+
+      if(existingUserIndex !== -1) {
+        realUser = userList[existingUserIndex].userObject;
+
+        if(realUser.password === user.password) {
+          realUser.authenticated = true;
+          sessionStorage.activeUser = realUser;
+          $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+        } else {
+          realUser.authenticated = false;
+          delete sessionStorage.activeUser;
+          $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+        }
+      } else {
+        $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+      }
     }
 
-    function invalidateUser(user) {
-      user.authenticated = false;
+    function invalidateUser() {
+      var sessionStorage = $sessionStorage;
+      delete sessionStorage.activeUser;
       $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
     }
 
-    function isAuthenticated(user) {
-      return user.authenticated;
+    function isAuthenticated() {
+      var sessionStorage = $sessionStorage;
+      if (angular.isDefined(sessionStorage.activeUser)) {
+        return sessionStorage.activeUser.authenticated;
+      } else {
+        return false;
+      }
     }
 
     function registerUser(user) {
       // retrieve userlist from localStorage
-      var userList = localStorageService.get('userlist');
+      var localStorage = $localStorage;
+      var userList = localStorage.userList;
 
       // Check that we have a valid array. If not, create a new one.
-      if(userList !== null) {
+      if(userList !== null && angular.isDefined(userList)) {
         // Check if entry already exists and overwrite it rather than creating a new one
+        // TODO: throw an error and show user that this account already exists
         var existingUserIndex = _.indexOf(userList, _.find(userList, {id: user.email}));
         if(existingUserIndex !== -1) {
           userList[existingUserIndex] = {id: user.email, userObject: user};
@@ -52,7 +80,8 @@
         userList = [{id: user.email, userObject: user}];
       }
 
-      localStorageService.set('userlist', userList);
+      localStorage.userList = userList;
+      authenticate({name: user.email, password: user.password});
     }
 
   }
