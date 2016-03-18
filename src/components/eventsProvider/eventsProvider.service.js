@@ -5,24 +5,13 @@
     .module('eventPlanner')
     .factory('eventService', eventService);
 
-  eventService.$inject = [];
+  eventService.$inject = [
+    '$localStorage',
+  ];
 
-  function eventService() {
+  function eventService($localStorage) {
 
-    var mockEvent1 = {
-      name: 'Event',
-      type: 'Geburtstag',
-      host: 'Ich',
-      start: '2016-12-30T22:59:00.000Z',
-      end: '2016-12-31T22:59:00.000Z',
-      guests: ['Philipp', 'Amy-Zoe'],
-      location: 'Egenhausen',
-      message: 'Testnachricht'
-    };
-
-    var mockEvents = [
-      mockEvent1
-    ];
+    var events = [];
 
     return {
       getEvents: getEvents,
@@ -30,11 +19,15 @@
     };
 
     function getEvents() {
-      return mockEvents;
+      var localStorage = $localStorage;
+      events = localStorage.events;
+      return events;
     }
 
     function addEvent(event) {
-      mockEvents.push(event);
+      var localStorage = $localStorage;
+      events.push(event);
+      localStorage.events = events;
     }
 
   }
