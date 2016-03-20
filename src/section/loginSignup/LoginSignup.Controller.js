@@ -21,10 +21,6 @@
       $state.go('login');
     });
 
-    $rootScope.$on(AUTH_EVENTS.logoutSuccess, function logoutSuccess() {
-      $state.go('login');
-    });
-
   }
 
 })();

@@ -34,7 +34,7 @@
 
       // check for successful login attempt
       $rootScope.$on(AUTH_EVENTS.loginSuccess, function loginSuccess() {
-        if (angular.isDefined(vm.loginForm.username)) {
+        if (angular.isDefined(vm.loginForm)) {
           vm.loginForm.username.$setValidity('loginFailure', true);
           vm.user = {};
         }

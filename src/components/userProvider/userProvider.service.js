@@ -9,10 +9,11 @@
     '$rootScope',
     '$localStorage',
     '$sessionStorage',
+    '$state',
     'AUTH_EVENTS'
   ];
 
-  function userService($rootScope, $localStorage, $sessionStorage, AUTH_EVENTS) {
+  function userService($rootScope, $localStorage, $sessionStorage, $state, AUTH_EVENTS) {
 
     return {
       authenticate: authenticate,
@@ -50,6 +51,8 @@
       var sessionStorage = $sessionStorage;
       delete sessionStorage.activeUser;
       $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
+      // TODO: Remove $state from factory and check why broadcast isn't working all the time
+      $state.go('login');
     }
 
     function isAuthenticated() {

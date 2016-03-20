@@ -13,7 +13,7 @@
         return;
       }
 
-      if (userService.isAuthenticated() === false) {
+      if (toState.name !== 'login' && userService.isAuthenticated() === false) {
         ev.preventDefault();
         $state.go('login');
       }
