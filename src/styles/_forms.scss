@@ -1,3 +1,12 @@
+label {
+  display: block;
+
+  span {
+    display: block;
+  }
+}
+
+
 .formInput {
   .errorMessage {
     display: none;
@@ -10,7 +19,8 @@
   &.has-error {
 
     input {
-      border: 1px solid red;
+      border: 1px solid $error;
+      margin-bottom: 0;
     }
 
     .errorMessage {

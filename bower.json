@@ -19,7 +19,8 @@
     "angular": "1.5.0",
     "angular-ui-router": "^0.2.18",
     "modernizer": "^2.8.2",
-    "ngstorage": "^0.3.10"
+    "ngstorage": "^0.3.10",
+    "font-awesome": "fontawesome#^4.5.0"
   },
   "script": {
     "postinstall": "gulp inject-vendor"
