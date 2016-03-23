@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('eventPlanner', ['ui.router', 'ngStorage'])
+    .module('eventPlanner', ['ui.router', 'ngStorage', 'ngAnimate'])
     .run(runConfig);
 
   function runConfig($rootScope, $state, userService) {

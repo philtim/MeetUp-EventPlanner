@@ -14,7 +14,7 @@
   function LoginSignupController($rootScope, $state, AUTH_EVENTS) {
 
     $rootScope.$on(AUTH_EVENTS.loginSuccess, function loginSuccess() {
-      $state.go('home');
+      $state.go('events');
     });
 
     $rootScope.$on(AUTH_EVENTS.loginFailure, function loginFailure() {

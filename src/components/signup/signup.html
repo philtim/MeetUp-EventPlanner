@@ -1,6 +1,4 @@
 <div class="signupForm">
-  <h3>Register</h3>
-
   <form name="vm.signupForm"
         ng-model="vm.signupForm"
         data-ng-submit="vm.registerUser(vm.newUser)"
@@ -31,13 +29,13 @@
     <div class="formInput"
          data-ng-class="{ 'has-error' : vm.signupForm.email.$invalid && !vm.signupForm.email.$pristine }">
       <label for="newUser.email">
-        <span>E-Mail address, which will be your username as well:</span>
+        <span>E-Mail address:</span>
         <input id="newUser.email"
                type="email"
                name="email"
                title="email of user"
                ng-model="vm.newUser.email"
-               placeholder="e.g. john@awesomeness.com"
+               placeholder="john@awesomeness.com"
                autocomplete="email"
                required>
       </label>

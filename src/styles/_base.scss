@@ -2,33 +2,19 @@ body {
   background: $text-icon;
   color: $primary-text;
   margin: 0 auto;
-  padding: 0 50px;
+  padding: 50px 10px 0 10px;
 }
 
-.button,
-button {
-  background-color: $cta;
-  color: $text-icon;
+@media (min-width: 400px) {}
 
-  &:disabled {
-    opacity: 0.65;
-    cursor: not-allowed;
-  }
-
-  &-secondary {
-    background: none;
-    border: none;
-    color: $cta;
-    opacity: 0.75;
-    transition: opacity 0.25s;
-    padding: 0 10px;
-    margin: 0;
-    height: auto;
-    line-height: 1;
-
-    &:not(:disabled):hover {
-      opacity: 1;
-      text-decoration: underline;
-    }
+@media (min-width: 550px) {
+  body {
+    padding: 0 50px;
   }
 }
+
+@media (min-width: 750px) {}
+
+@media (min-width: 1000px) {}
+
+@media (min-width: 1200px) {}

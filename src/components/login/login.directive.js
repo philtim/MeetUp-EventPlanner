@@ -8,11 +8,11 @@
   login.$inject = [
     '$rootScope',
     'AUTH_EVENTS',
-    '$log',
+    '$timeout',
     'userService'
   ];
 
-  function login($rootScope, AUTH_EVENTS, $log, userService) {
+  function login($rootScope, AUTH_EVENTS, $timeout, userService) {
     var directive = {
       restrict: 'E',
       scope: {
@@ -36,14 +36,16 @@
       $rootScope.$on(AUTH_EVENTS.loginSuccess, function loginSuccess() {
         if (angular.isDefined(vm.loginForm)) {
           vm.loginForm.username.$setValidity('loginFailure', true);
-          vm.user = {};
         }
       });
 
       // check for unsuccessful login attempt
       $rootScope.$on(AUTH_EVENTS.loginFailed, function loginFailed() {
         vm.loginForm.username.$setValidity('loginFailure', false);
-        vm.user = {};
+
+        $timeout(function () {
+          vm.loginForm.username.$setValidity('loginFailure', true);
+        }, 2000);
       });
     }
   }

@@ -1,13 +1,15 @@
 @import 'normalize';
 @import 'skeleton';
-@import '../../bower_components/font-awesome/scss/font-awesome';
+@import '../../bower_components/font-awesome/css/font-awesome.css';
 @import 'colors';
 @import 'base';
 @import 'forms';
+@import 'fonts';
 
 @import '../section/main/main';
 @import '../section/loginSignup/loginSignup';
 
+@import '../components/header/header';
 @import '../components/addEvent/addEvent';
 @import '../components/login/login';
 @import '../components/signup/signup';

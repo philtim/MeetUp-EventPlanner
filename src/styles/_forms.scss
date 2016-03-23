@@ -8,11 +8,35 @@ label {
 
 
 .formInput {
+  display: block;
+  margin-bottom: 10px;
+
+  label > span {
+    display: block;
+  }
+
+  label {
+    position: relative;
+
+    i.fa {
+      position: absolute;
+      top: 11px;
+      left: 5px;
+      opacity: 0.5;
+    }
+
+    input {
+      padding-left: 10px;
+      font-weight: normal;
+    }
+  }
+
   .errorMessage {
-    display: none;
+    opacity: 0;
+    transition: opacity 0.25s;
 
     span {
-      display: block;
+      display: none;
     }
   }
 
@@ -24,8 +48,41 @@ label {
     }
 
     .errorMessage {
-      display: block;
-      color: red;
+      opacity: 1;
+      color: $error;
+
+      span {
+        display: block;
+      }
+    }
+  }
+}
+
+
+.button,
+button {
+  background-color: $cta;
+  color: $text-icon;
+
+  &:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+
+  &-secondary {
+    background: none;
+    border: none;
+    color: $cta;
+    opacity: 0.75;
+    transition: opacity 0.25s;
+    padding: 0 10px;
+    margin: 0;
+    height: auto;
+    line-height: 1;
+
+    &:not(:disabled):hover {
+      opacity: 1;
+      text-decoration: underline;
     }
   }
 }

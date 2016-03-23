@@ -1,21 +1,31 @@
-<div class="loginSignup">
+<section>
+  <header></header>
+</section>
 
-  <h2>Please login</h2>
+<div class="loginSignup" data-ng-init="vm.showLogin = false;">
 
-  <login></login>
+  <div class="registerWrapper animate-show" data-ng-hide="vm.showLogin">
+    <h2>Register new user</h2>
 
-  <signup></signup>
+    <div class="switchText">
+      <span>Already have an account?</span>
+      <button class="button-secondary" data-ng-click="vm.showLogin = true">Log me in.</button>
+    </div>
 
-</div>
+    <signup></signup>
 
+  </div>
 
-<div class="colorWatches">
-<div class="color1">primary dark</div>
-<div class="color2">primary</div>
-<div class="color3">primary light</div>
-<div class="color4">cta</div>
-<div class="color5">primary text</div>
-<div class="color6">secondary text</div>
-<div class="color7">divider</div>
-<div class="color8">error</div>
+  <div class="loginWrapper animate-show" data-ng-show="vm.showLogin">
+    <h2>Login</h2>
+
+    <div class="switchText">
+      <span>Don't have an account, yet?</span>
+      <button class="button-secondary" data-ng-click="vm.showLogin = false">Sign me up.</button>
+    </div>
+
+    <login></login>
+
+  </div>
+
 </div>

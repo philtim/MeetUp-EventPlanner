@@ -7,18 +7,18 @@
 
   function routerConfig($stateProvider) {
     $stateProvider
-      .state('home', {
-        url: '/',
+      .state('events', {
+        url: '/events',
         templateUrl: 'section/main/main.html',
         controller: 'MainController',
-        controllerAs: 'main'
+        controllerAs: 'vm'
       })
 
       .state('login', {
-        url: '/login',
+        url: '/',
         templateUrl: 'section/loginSignup/loginSignup.html',
         controller: 'LoginSignupController',
-        controllerAs: 'main'
+        controllerAs: 'vm'
       });
 
   }
