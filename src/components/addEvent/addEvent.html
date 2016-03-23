@@ -15,6 +15,7 @@
         <input id="event.name"
                name="eventName"
                type="text"
+               title="Name of your event"
                placeholder="Name of event"
                data-ng-model="vm.event.name"
                required>
@@ -32,6 +33,7 @@
         <span>Give a short description what this event is about (optional):</span>
       <textarea id="event.description"
                 placeholder="Short description of the event"
+                title="Description of your event"
                 cols="60"
                 rows="5"
                 data-ng-model="vm.event.description"></textarea>
@@ -46,6 +48,7 @@
         <input id="event.type"
                name="eventType"
                list="event.typeList"
+               title="Define what kind of event it is"
                type="text"
                placeholder="Birthday"
                data-ng-model="vm.event.type"
@@ -70,6 +73,7 @@
         <input-geolocation name="location"
                            data-ng-model='vm.event.location'
                            id="location"
+                           title="Provide location of event"
                            required></input-geolocation>
 
         <div class="errorMessage"
@@ -87,6 +91,7 @@
         <input id="event.host"
                name="host"
                type="text"
+               title="Who is the event host?"
                placeholder="Name of organizer/host/company"
                data-ng-model="vm.event.host"
                required>
@@ -111,6 +116,7 @@
             <input id="event.startDate"
                    name="start"
                    type="datetime-local"
+                   title="Start of event"
                    data-ng-model="vm.event.start"
                    data-ng-blur="vm.checkDate(vm.eventForm.start, vm.event.start)"
                    required>
@@ -130,6 +136,7 @@
             <span>When will the event end?</span>
             <input id="event.endDate"
                    name="end"
+                   title="End of event"
                    type="datetime-local"
                    data-ng-model="vm.event.end"
                    data-ng-blur="vm.checkDateAndCompare(vm.eventForm.end, vm.event.end, vm.event.start)"
@@ -158,6 +165,7 @@
             <input id="event.altDate.startDate"
                    name="startDateAlt"
                    type="text"
+                   title="Start date of event"
                    pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](20)\d\d"
                    placeholder="format: mm/dd/yyyy"
                    data-ng-blur="vm.checkDate(vm.eventForm.startDateAlt, vm.event.altDate.startDate)"
@@ -179,6 +187,7 @@
             <span>On which time will the event start?</span>
             <input id="event.altDate.startTime"
                    name="startTimeAlt"
+                   title="Start time of event"
                    type="text"
                    placeholder="22:45 | format 24h"
                    pattern="(0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9])"
@@ -201,6 +210,7 @@
             <input id="event.altDate.endDate"
                    name="endDateAlt"
                    type="text"
+                   title="End date of event"
                    pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](20)\d\d"
                    placeholder="format: mm/dd/yyyy"
                    data-ng-blur="vm.checkDateAndCompare(vm.eventForm.endDateAlt, vm.event.altDate.endDate, vm.event.altDate.startDate)"
@@ -224,6 +234,7 @@
             <input id="event.altDate.endTime"
                    name="endTimeAlt"
                    type="text"
+                   title="End time of event"
                    placeholder="23:45 | format 24h"
                    pattern="(0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9])"
                    data-ng-model="vm.event.altDate.endTime"
@@ -248,6 +259,7 @@
         <input id="event.guests"
                name="guest"
                type="text"
+               title="Fill your guest list"
                placeholder="Donald Duck"
                data-ng-model="vm.guest">
         <button type="button"

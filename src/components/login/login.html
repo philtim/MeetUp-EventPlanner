@@ -13,6 +13,7 @@
         <input type="text"
                name="username"
                id="user.name"
+               title="Username"
                ng-model="vm.user.name"
                autocomplete="email"
                required >
@@ -20,10 +21,12 @@
 
       <label for="user.password">
         <span>Password:</span>
-        <input type="text"
+        <input type="password"
                name="password"
+               title="password"
                id="user.password"
                ng-model="vm.user.password"
+               autocomplete="password"
                required >
       </label>
 
