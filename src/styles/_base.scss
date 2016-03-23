@@ -5,11 +5,26 @@ body {
   padding: 50px 10px 0 10px;
 }
 
+.animate-show {
+  opacity: 1;
+
+}
+
+.animate-show.ng-hide-add, .animate-show.ng-hide-remove {
+  transition: all cubic-bezier(.58,.57,.24,1) 0.25s;
+}
+
+.animate-show.ng-hide {
+  opacity: 0;
+  position: absolute;
+  left: -99999px;
+}
+
 @media (min-width: 400px) {}
 
 @media (min-width: 550px) {
   body {
-    padding: 0 50px;
+    padding: 50px 25px 0 25px;
   }
 }
 
@@ -18,3 +33,12 @@ body {
 @media (min-width: 1000px) {}
 
 @media (min-width: 1200px) {}
+
+// Prevent zooming in on input fields
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  select,
+  textarea,
+  input {
+    font-size: 16px;
+  }
+}
