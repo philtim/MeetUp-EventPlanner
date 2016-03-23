@@ -6,22 +6,16 @@
     .controller('MainController', MainController);
 
   MainController.$inject = [
-    'eventService',
-    'userService'
+    'eventService'
   ];
 
-  function MainController(eventService, userService) {
+  function MainController(eventService) {
     var vm = this;
     vm.events = eventService.getEvents();
 
     vm.addEvent = function (event) {
       eventService.addEvent(angular.copy(event));
     };
-
-    vm.logout = function () {
-      userService.invalidateUser();
-    }
-
   }
 
 })();

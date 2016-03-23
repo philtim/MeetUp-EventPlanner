@@ -1,4 +1,9 @@
 <div class="header">
 
   <h1><i class="fa fa-ticket"></i>Event Planner</h1>
+
+  <button class="signOut"
+          title="sign out"
+          data-ng-click="vm.logout()"
+          data-ng-if="vm.isUserAuthenticated"><i class="fa fa-sign-out"></i><span>Sign out</span></button>
 </div>
