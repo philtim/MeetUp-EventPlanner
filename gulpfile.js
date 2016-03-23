@@ -25,7 +25,8 @@ var paths = {
   index: 'src/*.html',
   src: 'src',
   tmp: '.tmp',
-  sass: 'src/**/*.scss',
+  sass: 'src/styles/**/*.scss',
+  sassAll: 'src/**/*.scss',
   js: ['src/**/*.js', '!src/**/*.spec.js'],
   html: 'src/**/*.html',
   assets: 'src/assets/**',
@@ -167,7 +168,7 @@ gulp.task('watch:dev', [
   'inject',
   'serve'
 ], function() {
-  gulp.watch(paths.sass, ['sass']);
+  gulp.watch(paths.sassAll, ['sass']);
   gulp.watch(paths.js, ['lint', 'inject']);
   gulp.watch(paths.index, ['inject']);
 

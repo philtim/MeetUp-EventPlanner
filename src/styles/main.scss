@@ -4,3 +4,10 @@
 @import 'colors';
 @import 'base';
 @import 'forms';
+
+@import '../section/main/main';
+@import '../section/loginSignup/loginSignup';
+
+@import '../components/addEvent/addEvent';
+@import '../components/login/login';
+@import '../components/signup/signup';
