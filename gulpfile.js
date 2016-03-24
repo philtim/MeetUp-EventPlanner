@@ -115,7 +115,7 @@ gulp.task('sass:prod', function() {
       browsers: ['last 2 versions']
     }))
     .pipe(concat('main.css'))
-    .pipe(gulp.dest(paths.prod));
+    .pipe(gulp.dest(paths.prod+'/css'));
 });
 
 gulp.task('copy:assets', function () {
