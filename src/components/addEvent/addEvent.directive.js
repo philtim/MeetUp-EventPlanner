@@ -61,13 +61,13 @@
 
           if (newValue.hasOwnProperty('startDate') && newValue.hasOwnProperty('startTime')) {
             if (angular.isDefined(newValue.startDate) || angular.isDefined(newValue.startTime)) {
-              vm.event.startDate = createDateObject(newValue.startDate, newValue.startTime);
+              vm.event.start = createDateObject(newValue.startDate, newValue.startTime);
             }
           }
 
           if (newValue.hasOwnProperty('endDate') && newValue.hasOwnProperty('endTime')) {
             if (angular.isDefined(newValue.endDate) || angular.isDefined(newValue.endTime)) {
-              vm.event.endDate = createDateObject(newValue.endDate, newValue.endTime);
+              vm.event.end = createDateObject(newValue.endDate, newValue.endTime);
             }
           }
         }
@@ -82,6 +82,7 @@
     }
 
     function createDateObject(date, time) {
+      if(angular.isUndefined(date) || angular.isUndefined(time)) return;
       time = time.split(':');
       date = date.split('/');
       var startDate = {};
