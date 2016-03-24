@@ -30,6 +30,7 @@ var paths = {
   js: ['src/**/*.js', '!src/**/*.spec.js'],
   html: 'src/**/*.html',
   assets: 'src/assets/**',
+  fonts: 'src/fonts/**',
   assetsOther: ['src/**/*.ico'],
   components: ['src/components/**/*', '!src/components/**/*.{scss,js,css}'],
   section: ['src/section/**/*', '!src/section/**/*.{scss,js,css}'],
@@ -122,6 +123,11 @@ gulp.task('copy:assets', function () {
     .pipe(gulp.dest(paths.prod+'/assets/'));
 });
 
+gulp.task('copy:fonts', function () {
+  return gulp.src(paths.fonts)
+    .pipe(gulp.dest(paths.prod+'/fonts/'));
+});
+
 gulp.task('copy:components', function () {
   return gulp.src(paths.components)
     .pipe(gulp.dest(paths.prod+'/components/'));
@@ -182,6 +188,7 @@ gulp.task('build:prod', [
   'clean:prod',
   'copy:assets',
   'copy:assetsOther',
+  'copy:fonts',
   'copy:components',
   'copy:section',
   'sass:prod',

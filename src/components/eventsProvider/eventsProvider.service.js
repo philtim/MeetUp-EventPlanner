@@ -20,8 +20,9 @@
 
     function getEvents() {
       var localStorage = $localStorage;
-      events = localStorage.events;
-      return events.slice().reverse();
+      events = localStorage.events || [];
+        return events.slice().reverse();
+
     }
 
     function addEvent(event) {
