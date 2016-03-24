@@ -16,6 +16,7 @@ npm install && bower install
 ```shell
 gulp build:dev
 ```
+Please note, sometimes you have to refresh the page once browser-sync started.
 
 ### Build production version 
 ```shell
