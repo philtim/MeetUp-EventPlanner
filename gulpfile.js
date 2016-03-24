@@ -41,7 +41,7 @@ var paths = {
 // function for configuringing browserSync
 function browserSyncInit(baseDir) {
   browserSync.init({
-    startPath: '/',
+    startPath: '/#/',
     server: {
       baseDir: baseDir,
       routes: {
