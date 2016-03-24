@@ -20,9 +20,8 @@
 
     function getEvents() {
       var localStorage = $localStorage;
-      events = localStorage.events || [];
-        return events.slice().reverse();
-
+      events = localStorage.events || mockData;
+      return events.slice().reverse();
     }
 
     function addEvent(event) {
@@ -32,5 +31,9 @@
     }
 
   }
+
+  var mockData = [{ 'guests': ['Philipp', 'John', 'Sarah'], 'location': '101 W 6th St # 200,Austin, TX 78701, USA', 'name': 'Design Kickoff', 'type': 'Meeting', 'host': 'Philipp', 'start': '2016-07-07T10:00:00.000Z', 'end': '2016-07-07T13:00:00.000Z' },
+    { 'guests': ['Amy', 'Mary', 'Julia', 'Hannah', 'Lou', 'Zoe'], 'location': 'Rosensteinstraße 20,70191 Stuttgart', 'name': 'Cinema evening', 'type': 'Hanging out', 'host': 'Zoe', 'start': '2016-05-07T19:00:00.000Z', 'end': '2016-05-07T23:00:00.000Z' }
+  ];
 
 })();
