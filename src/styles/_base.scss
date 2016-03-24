@@ -3,6 +3,10 @@ body {
   color: $primary-text;
   margin: 0 auto;
   padding: 50px 10px 0 10px;
+
+  .container {
+    max-width: 1020px;
+  }
 }
 
 .animate-show {

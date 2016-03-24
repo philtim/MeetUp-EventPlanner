@@ -1,10 +1,14 @@
 .event {
   width: 300px;
-  min-height: 300px;
+  height: 300px;
   overflow: hidden;
   background: $primary-light;
   position: relative;
-  transition: all 1.25s;
+
+  &.showOverflow {
+    height: auto;
+    min-height: 300px;
+  }
 
   .head {
     background: $primary-dark;
@@ -71,7 +75,9 @@
         }
 
         &:last-child {
-          border: none;
+          span {
+            border: none;
+          }
         }
       }
     }
@@ -99,7 +105,7 @@
 
   .expanded {
     padding-bottom: 90px;
-    
+
     button {
       display: block;
     }

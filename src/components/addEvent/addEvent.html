@@ -15,6 +15,7 @@
 
   <!-- STANDARD FORM FOR NEW EVENTS -->
   <form name="vm.eventForm"
+        class="row"
         ng-model="vm.eventForm"
         data-ng-show="vm.showForm"
         data-ng-submit="createEvent({event: vm.event}); vm.clearForm()"
@@ -265,18 +266,19 @@
 
 
     <!-- GUEST -->
-    <div class="formInput"
+    <div class="formInput guestList / row"
          data-ng-class="{ 'has-error' : vm.event.guests.length < 1 && vm.eventForm.guest.$touched}">
       <label for="event.guests">
         <span>Who should attend this event?</span>
         <input id="event.guests"
+               class="eight columns"
                name="guest"
                type="text"
                title="Fill your guest list"
                placeholder="Donald Duck"
                data-ng-model="vm.guest">
         <button type="button"
-                class="button-secondary"
+                class="button-secondary / four columns"
                 data-ng-disabled="!vm.guest"
                 data-ng-click="vm.addGuest(vm.guest)">Add guest
         </button>
@@ -300,13 +302,15 @@
     </ul>
 
     <!-- SUBMIT -->
-    <button type="reset"
-      class="button-secondary"
-            data-ng-click="vm.showForm = false;">Cancel
-    </button>
-    <button type="submit"
+    <div class="buttonBar">
+      <button type="reset"
+        class="button-secondary"
+              data-ng-click="vm.showForm = false;">Cancel
+      </button>
+      <button type="submit"
             data-ng-disabled="vm.eventForm.$invalid">Create event
     </button>
+    </div>
 
     <hr></hr>
 
