@@ -3,12 +3,15 @@
   <header></header>
 </section>
 
+<section class="eventsWrapper">
 
+  <h2>Awesome events</h2>
 
-<h2>List of all events:</h2>
+  <add-event add-event="vm.addEvent(event)"></add-event>
 
-<ul data-ng-repeat="(key, value) in main.events track by $index">
-  <li>{{value}}</li>
-</ul>
-
-<add-event add-event="main.addEvent(event)"></add-event>
+  <ul class="eventList">
+    <li data-ng-repeat="(key, value) in vm.events track by $index">
+      <event event=value></event>
+    </li>
+  </ul>
+</section>

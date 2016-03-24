@@ -15,6 +15,7 @@
 
     vm.addEvent = function (event) {
       eventService.addEvent(angular.copy(event));
+      vm.events = eventService.getEvents();
     };
   }
 

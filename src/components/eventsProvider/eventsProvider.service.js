@@ -6,7 +6,7 @@
     .factory('eventService', eventService);
 
   eventService.$inject = [
-    '$localStorage',
+    '$localStorage'
   ];
 
   function eventService($localStorage) {
@@ -21,7 +21,7 @@
     function getEvents() {
       var localStorage = $localStorage;
       events = localStorage.events;
-      return events;
+      return events.slice().reverse();
     }
 
     function addEvent(event) {

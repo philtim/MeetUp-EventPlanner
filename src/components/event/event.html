@@ -1,0 +1,52 @@
+<div class="event"
+     data-ng-init="vm.showMore = false;">
+
+  <div class="head">
+    <h6 class="eventName">{{event.name}}</h6>
+    <span class="host">hosted by {{event.host}}</span>
+  </div>
+
+  <div class="body">
+    <div class="start">
+      <span><i class="fa fa-calendar-check-o"></i>{{event.start | date: short}}</span>
+      <span>{{event.start | date: 'h:mm a'}}</span>
+    </div>
+
+    <div class="end">
+      <span><i class="fa fa-calendar-times-o"></i>{{event.end | date: short}}</span>
+      <span>{{event.end | date: 'h:mm a'}}</span>
+    </div>
+
+    <div class="location"><i class="fa fa-map-marker"></i>{{event.location}}
+      <a href="http://maps.google.com/?q={{event.location}}"
+         target="_blank">(Open map)</a>
+    </div>
+
+    <button data-ng-hide="vm.showMore || !event.description"
+            class="button-secondary"
+            data-ng-click="vm.showMore = true">Show more
+    </button>
+  </div>
+
+  <div data-ng-class="{'expanded': vm.showMore || !event.description}"
+       class="additionalInfo">
+
+    <div data-ng-if="event.description"
+         class="description"><i class="fa fa-comment-o"></i>{{event.description}}
+    </div>
+
+    <div class="guestList">
+      <i class="fa fa-users"></i>
+      <ul>
+        <li data-ng-repeat="guest in event.guests track by $index">{{guest}}</li>
+      </ul>
+    </div>
+
+    <button class="button-secondary"
+            data-ng-hide="!event.description"
+            data-ng-click="vm.showMore = false">Show less
+    </button>
+
+  </div>
+
+</div>

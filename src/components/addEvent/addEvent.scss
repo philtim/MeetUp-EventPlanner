@@ -21,6 +21,41 @@
   }
 }
 
+.miniInputForm {
+  position: relative;
+  input {
+    border: 1px solid $cta;
+  }
+  button {
+    max-width: 170px;
+    position: absolute;
+    right: 0;
+    border: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding: 0 15px;
+
+    span {
+      display: none;
+      padding-left: 5px;
+    }
+
+    i.fa {
+
+    }
+  }
+}
+
+@media (min-width: 550px) {
+  .miniInputForm {
+    button {
+      span {
+        display: inline-block;
+      }
+    }
+  }
+}
+
 .noDate {
 
   .dateTime {

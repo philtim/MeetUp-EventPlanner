@@ -1,9 +1,22 @@
 <div class="eventForm">
 
-  <h2>Add new event</h2>
+  <!-- QUICK INPUT FOR EVENTS -->
+  <div class="miniInputForm / row"
+       data-ng-hide="vm.showForm"
+       data-ng-init="vm.showForm = false">
+    <input class="eleven column"
+      type="text"
+           placeholder="Give your new event a name"
+           ng-model="vm.event.name">
+    <button
+      class="one columnt"
+      data-ng-click="vm.showForm = !vm.showForm"><i class="fa fa-plus"></i><span>Create event</span></button>
+  </div>
 
+  <!-- STANDARD FORM FOR NEW EVENTS -->
   <form name="vm.eventForm"
         ng-model="vm.eventForm"
+        data-ng-show="vm.showForm"
         data-ng-submit="createEvent({event: vm.event}); vm.clearForm()"
         novalidate>
 
@@ -110,7 +123,7 @@
 
         <!-- START -->
         <div class="formInput"
-             data-ng-class="{ 'has-error' : vm.eventForm.start.$invalid && !vm.eventForm.start.$pristine }">
+             data-ng-class="{ 'has-error' : vm.eventForm.start.$invalid && vm.eventForm.start.$touched }">
           <label for="event.startDate">
             <span>When will the event start?</span>
             <input id="event.startDate"
@@ -131,7 +144,7 @@
 
         <!-- END -->
         <div class="formInput"
-             data-ng-class="{ 'has-error' : vm.eventForm.end.$invalid && !vm.eventForm.end.$pristine }">
+             data-ng-class="{ 'has-error' : vm.eventForm.end.$invalid && vm.eventForm.end.$touched }">
           <label for="event.endDate">
             <span>When will the event end?</span>
             <input id="event.endDate"
@@ -281,16 +294,24 @@
       <li><span>{{guest}}</span>
         <button type="button"
                 class="button-secondary"
-                data-ng-click="vm.removeGuest($event, $index)">x
+                data-ng-click="vm.removeGuest($event, $index)"><i class="fa fa-close"></i>
         </button>
       </li>
     </ul>
 
     <!-- SUBMIT -->
+    <button type="reset"
+      class="button-secondary"
+            data-ng-click="vm.showForm = false;">Cancel
+    </button>
     <button type="submit"
             data-ng-disabled="vm.eventForm.$invalid">Create event
     </button>
 
+    <hr></hr>
+
+
   </form>
+
 
 </div>

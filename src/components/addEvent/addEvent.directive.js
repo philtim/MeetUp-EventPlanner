@@ -117,6 +117,7 @@
         vm.eventForm.$setPristine();
         vm.eventForm.$setUntouched();
         vm.event.guests = [];
+        vm.showForm = false;
       };
 
       vm.checkDate = function checkDate(form, value) {

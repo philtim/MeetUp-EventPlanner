@@ -1,0 +1,101 @@
+.event {
+  width: 300px;
+  min-height: 300px;
+  overflow: hidden;
+  background: $primary-light;
+  position: relative;
+  transition: all 1.25s;
+
+  .head {
+    background: $primary-dark;
+    padding: 20px;
+    color: $text-icon;
+  }
+
+  .body {
+    padding: 10px 20px;
+  }
+
+  .additionalInfo {
+    padding: 10px 20px 40px 20px;
+  }
+
+  .eventName {
+    font-weight: bold;
+    font-size: 1.8rem;
+  }
+
+  .host {
+    color: $divider;
+  }
+
+  .location {
+    margin-top: 10px;
+
+    a {
+      font-size: 13px;
+      color: $primary-dark;
+    }
+  }
+
+  i.fa {
+    padding-right: 10px;
+  }
+
+  .guestList {
+    display: none;
+    margin-top: 10px;
+    ul {
+      margin: 0;
+      display: inline;
+      li {
+        float: none;
+        border-right: 1px solid;
+        display: inline;
+        list-style: none;
+        padding: 0 5px;
+        font-size: 15px;
+
+        &:last-child {
+          border: none;
+        }
+      }
+    }
+  }
+
+  button {
+    display: none;
+    padding: 20px 0;
+    position: absolute;
+    bottom: 0;
+    right: 20px;
+  }
+
+  .description {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .body {
+    button {
+      display: block;
+    }
+  }
+
+  .expanded {
+    button {
+      display: block;
+    }
+
+    .guestList {
+      display: block;
+    }
+
+    .description {
+      overflow: visible;
+      white-space: normal;
+    }
+  }
+
+}
