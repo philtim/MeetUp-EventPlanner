@@ -4,7 +4,7 @@
 
 <div class="loginSignup" data-ng-init="vm.showLogin = false;">
 
-  <div class="registerWrapper animate-show" data-ng-hide="vm.showLogin">
+  <div class="registerWrapper animate-show" data-ng-if="!vm.showLogin">
     <h2>Register new user</h2>
 
     <div class="switchText">
@@ -16,7 +16,7 @@
 
   </div>
 
-  <div class="loginWrapper animate-show" data-ng-show="vm.showLogin">
+  <div class="loginWrapper animate-show" data-ng-if="vm.showLogin">
     <h2>Login</h2>
 
     <div class="switchText">

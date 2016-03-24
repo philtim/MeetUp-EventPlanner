@@ -3,7 +3,9 @@
   height: 300px;
   overflow: hidden;
   background: $primary-light;
+  color: $text-dark;
   position: relative;
+  margin: 0 auto;
 
   &.showOverflow {
     height: auto;
@@ -11,7 +13,7 @@
   }
 
   .head {
-    background: $primary-dark;
+    background: $primary;
     padding: 20px;
     color: $text-icon;
   }
@@ -30,7 +32,7 @@
   }
 
   .host {
-    color: $divider;
+    color: $text-icon;
   }
 
   .location {

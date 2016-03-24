@@ -15,10 +15,18 @@
   }
 }
 
-@media (min-width: 750px) {
+@media (min-width: 550px) {
   .eventsWrapper {
     li {
       float: left;
+      padding: 4px;
+    }
+  }
+}
+
+@media (min-width: 750px) {
+  .eventsWrapper {
+    li {
       padding: 12px;
     }
   }
