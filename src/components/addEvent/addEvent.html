@@ -5,9 +5,11 @@
        data-ng-hide="vm.showForm"
        data-ng-init="vm.showForm = false">
     <input class="eleven column"
-      type="text"
+           id="eventNameInput"
+           type="text"
            placeholder="Give your new event a name"
-           ng-model="vm.event.name">
+           data-ng-model="vm.event.name"
+           autofocus>
     <button
       class="one columnt"
       data-ng-click="vm.showForm = !vm.showForm"><i class="fa fa-plus"></i><span>Create event</span></button>
@@ -304,12 +306,12 @@
     <!-- SUBMIT -->
     <div class="buttonBar">
       <button type="reset"
-        class="button-secondary"
+              class="button-secondary"
               data-ng-click="vm.showForm = false;">Cancel
       </button>
       <button type="submit"
-            data-ng-disabled="vm.eventForm.$invalid">Create event
-    </button>
+              data-ng-disabled="vm.eventForm.$invalid">Create event
+      </button>
     </div>
 
     <hr></hr>

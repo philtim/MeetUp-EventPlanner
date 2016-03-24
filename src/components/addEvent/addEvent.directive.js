@@ -6,11 +6,12 @@
     .directive('addEvent', addEvent);
 
   addEvent().$inject = [
+    '$timeout',
     '$filter',
     '$log'
   ];
 
-  function addEvent($filter, $log) {
+  function addEvent($timeout, $filter, $log) {
     var directive = {
       restrict: 'E',
       scope: {
@@ -26,6 +27,10 @@
     return directive;
 
     function linkFunc(scope, el, attrs, vm) {
+
+      $timeout(function () {
+        angular.element(el).find('input')[0].focus();
+      });
 
       if (!Modernizr.inputtypes.date) {
         vm.hasDate = false;
