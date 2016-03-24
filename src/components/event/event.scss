@@ -45,16 +45,30 @@
   .guestList {
     display: none;
     margin-top: 10px;
+
+    i.fa {
+      display: block;
+      float: left;
+    }
+
     ul {
-      margin: 0;
-      display: inline;
+      margin: -4px 0 0 0;
+      display: block;
+      float: left;
+      max-width: 80%;
+
       li {
-        float: none;
-        border-right: 1px solid;
+        float: left;
         display: inline;
         list-style: none;
-        padding: 0 5px;
         font-size: 15px;
+        padding: 0;
+        margin: 0;
+
+        span {
+          padding: 0 5px;
+          border-right: solid 1px;
+        }
 
         &:last-child {
           border: none;
