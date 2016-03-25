@@ -16,12 +16,17 @@
       scope: {
         signupForm: '@'
       },
+      link: linkFunc,
       templateUrl: './components/signup/signup.html',
       controller: SignupController,
       controllerAs: 'vm'
     };
 
     return directive;
+
+    function linkFunc(scope, el, attrs, vm) {
+      angular.element(el).find('input')[0].focus();
+    }
 
     function SignupController() {
       var vm = this;

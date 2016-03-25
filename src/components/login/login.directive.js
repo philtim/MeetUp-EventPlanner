@@ -18,12 +18,17 @@
       scope: {
         loginForm: '@'
       },
+      link: linkFunc,
       templateUrl: './components/login/login.html',
       controller: LoginController,
       controllerAs: 'vm'
     };
 
     return directive;
+
+    function linkFunc(scope, el, attrs, vm) {
+      angular.element(el).find('input')[0].focus();
+    }
 
     function LoginController() {
       var vm = this;
