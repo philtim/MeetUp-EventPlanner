@@ -32,6 +32,18 @@
         angular.element(el).find('input')[0].focus();
       });
 
+      scope.$watch('vm.showForm', function (newVal, oldVal) {
+        if(newVal === true && newVal !== oldVal) {
+          $timeout(function () {
+            angular.element(el).find('input')[1].focus();
+          });
+        } else if(newVal === false && newVal !== oldVal) {
+          $timeout(function () {
+            angular.element(el).find('input')[0].focus();
+          });
+        }
+      });
+
       if (!Modernizr.inputtypes.date) {
         vm.hasDate = false;
         el.addClass('noDate');
