@@ -23,3 +23,6 @@ Please note, sometimes you have to refresh the page once browser-sync started.
 gulp build:prod
 cd ./build/dist.prod
 ```
+## License
+
+[MIT License](http://en.wikipedia.org/wiki/MIT_License)
