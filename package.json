@@ -13,7 +13,7 @@
   "bugs": {
     "url": "https://github.com/philtim/MeetUp-EventPlanner/issues"
   },
-  "homepage": "https://github.com/philtim/MeetUp-EventPlanner#readme",
+  "homepage": "http://playground.t7lab.com/EventPlanner/#/",
   "author": "Philipp Timmalog",
   "license": "MIT",
   "devDependencies": {
